@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-void render_prepare(void);
-void render_present(void);
+void s_render_prepare(void);
+void s_render_present(void);
 
 #endif // RENDER_H_INCLUDED
