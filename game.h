@@ -3,6 +3,6 @@
 
 #include "common.h"//SDL, structs
 
-void s_cap_framerate(long*, float*);
+
 
 #endif

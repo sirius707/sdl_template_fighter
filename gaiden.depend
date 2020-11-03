@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1588284956 source:f:\blocks\sdl_template\my_sdl_util.c
+1604356078 source:f:\blocks\sdl_template\my_sdl_util.c
 	"my_sdl_util.h"
 
-1588285055 f:\blocks\sdl_template\my_sdl_util.h
+1604356124 f:\blocks\sdl_template\my_sdl_util.h
 	<SDL.h>
+	"stdio.h"
 
 1540998544 g:\programs\libraries and stuff\sdl2-devel-2.0.9-mingw\sdl2-2.0.9\i686-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -368,7 +369,8 @@
 
 1604330953 f:\blocks\sdl_template\defs.h
 
-1604353879 f:\blocks\sdl_template\structs.h
+1604356213 f:\blocks\sdl_template\structs.h
+	"common.h"
 
 1604287555 source:f:\blocks\sdl_template\init.c
 	"init.h"
@@ -388,9 +390,9 @@
 1604331618 f:\blocks\sdl_template\input.h
 	"common.h"
 
-1604355317 source:f:\blocks\sdl_template\game.c
+1604356068 source:f:\blocks\sdl_template\game.c
 	"game.h"
 
-1604355090 f:\blocks\sdl_template\game.h
+1604356027 f:\blocks\sdl_template\game.h
 	"common.h"
 
