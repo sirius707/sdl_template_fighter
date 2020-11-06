@@ -7,17 +7,20 @@ typedef struct{
 	int keyboard[MAX_KEYBOARD_KEYS];
 
     uint8_t fps;
+    float delta_time;//??unused
 }PROGRAM;
-
 PROGRAM prog;
 
 typedef struct{
    float x;
    float y;
 
+   float dx;
+   float dy;
+
    uint8_t hp;
-   bool parried;//game specifc, use std bool instead
 }CHARACTER;//todo:create 2 characters
+CHARACTER players[NUMBER_OF_PLAYERS];
 
 typedef struct{
 

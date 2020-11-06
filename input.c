@@ -1,7 +1,7 @@
 #include "input.h"
 
 
-void s_key_up(SDL_KeyboardEvent *event)
+inline void s_key_up(SDL_KeyboardEvent *event)
 {
 	if (event->repeat == 0 && event->keysym.scancode < MAX_KEYBOARD_KEYS)
 	{
@@ -9,7 +9,7 @@ void s_key_up(SDL_KeyboardEvent *event)
 	}
 }
 
-void s_key_down(SDL_KeyboardEvent *event)
+inline void s_key_down(SDL_KeyboardEvent *event)
 {
 	if (event->repeat == 0 && event->keysym.scancode < MAX_KEYBOARD_KEYS)
 	{
@@ -17,7 +17,7 @@ void s_key_down(SDL_KeyboardEvent *event)
 	}
 }
 
-inline void s_input(void)
+void s_input(void)
 {
 	SDL_Event event;
 

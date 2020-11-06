@@ -5,6 +5,9 @@
 #include "input.h"
 #include "game.h"
 
+
+//2d fighting game
+
 void init();
 void deinit();
 
@@ -13,6 +16,10 @@ void deinit();
 int main( int argc, char* args[] )
 {
     memset(&prog, 0, sizeof(PROGRAM));
+    memset(players, 0, sizeof(CHARACTER)*NUMBER_OF_PLAYERS);
+    players[0].x = 100;
+    players[0].y = 200;
+
     prog.fps = 60;
     sdl_init();
 
@@ -24,10 +31,10 @@ int main( int argc, char* args[] )
 
     while(1){
 
-        s_render_prepare();
         s_input();
-        s_render_present();
-
+        s_game_p1_logic();
+        s_game_physics();
+        s_render_total();
         s_cap_framerate(&then, &remaining_time);
     }
 

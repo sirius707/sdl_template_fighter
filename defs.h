@@ -6,5 +6,6 @@
 
 #define MAX_KEYBOARD_KEYS 350
 
+#define NUMBER_OF_PLAYERS 1
 
 #endif // DEFS_H_INCLUDED
