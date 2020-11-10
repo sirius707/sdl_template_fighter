@@ -2,6 +2,13 @@
 
 
 extern CHARACTER players[];
+CHARACTER const *players_ptr;
+
+void s_render_init(void)
+{
+    //should be passed, later
+    players_ptr = players;
+}
 
 void s_render_players(void)
 {
@@ -9,8 +16,8 @@ void s_render_players(void)
           SDL_Rect rect;
             rect.x = players[i].x;
             rect.y = players[i].y;
-            rect.w = 100;
-            rect.h = 150;
+            rect.w = players[i].width;
+            rect.h = players[i].height;
 
             SDL_SetRenderDrawColor(prog.renderer, 255, 255, 255, 255);
             SDL_RenderDrawRect(prog.renderer, &rect);

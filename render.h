@@ -3,6 +3,8 @@
 
 #include "common.h"
 
+void s_render_init(void);
+
 void s_render_players(void);
 
 void s_render_prepare(void);

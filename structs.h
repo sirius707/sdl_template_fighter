@@ -1,27 +1,34 @@
 #include "common.h"//redundant? it still compiles if i don't include this
 
-typedef struct{
+typedef struct PROGRAM{
 	SDL_Renderer *renderer;
 	SDL_Window *window;
 
 	int keyboard[MAX_KEYBOARD_KEYS];
 
+    GAME_STATE enum_game_state;
+
     uint8_t fps;
     float delta_time;//??unused
+
 }PROGRAM;
-PROGRAM prog;
 
-typedef struct{
-   float x;
-   float y;
 
-   float dx;
-   float dy;
+typedef struct PLAYER{
+   float x;float width;
+   float y;float height;
+   float vel_x;float dx;
+   float vel_y;float dy;
+
+   PLAYER_STATE enum_player_state;
 
    uint8_t hp;
 }CHARACTER;//todo:create 2 characters
-CHARACTER players[NUMBER_OF_PLAYERS];
+
 
 typedef struct{
 
 }ATK_INFO;//todo:create attack queue
+
+PROGRAM prog;
+CHARACTER players[NUMBER_OF_PLAYERS];

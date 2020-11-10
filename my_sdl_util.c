@@ -24,11 +24,11 @@ SDL_Texture *accelerate_surface(SDL_Surface *surface, SDL_Renderer *renderer)
     return result;
 }
 
-void s_cap_framerate(long *then, float *remainder)
+inline long s_cap_framerate(long *then, float *remainder, size_t fps)
 {
 	long wait, frameTime;
 
-	wait = 16 + *remainder;
+	wait = 1000/fps + *remainder;
 	*remainder -= (int)*remainder;
 	frameTime = SDL_GetTicks() - *then;
 	wait -= frameTime;
@@ -41,4 +41,6 @@ void s_cap_framerate(long *then, float *remainder)
 	SDL_Delay(wait);
 	*remainder += 0.667;
 	*then = SDL_GetTicks();
+
+	return frameTime;
 }
