@@ -23,7 +23,8 @@ int main( int argc, char* args[] )
     players[0].y = 20;
     players[0].width = 100;
     players[0].height = 150;
-    players[0].vel_y = 0.8;
+    players[0].control = PLAYER_ONE;
+    players[0].enum_player_state = IDLE;
 
     prog.fps = 60;
     prog.enum_game_state = RUNNING;
@@ -39,11 +40,13 @@ int main( int argc, char* args[] )
 
         s_input();
 
-        s_game_p1_logic();
+        s_game_player_logic();
         s_game_physics();
 
         s_render_total();
         prog.delta_time = s_cap_framerate(&then, &remaining_time, prog.fps)/10.0f;
+        prog.delta_time = 1;//temporary until a fix is found
+        printf("%d state=%d vel_y = %f, pos_y = %f, dt = %f\r", players[0].grounded, players[0].enum_player_state, players[0].vel_y, players[0].y, prog.delta_time);
     }
 
     sdl_deinit();

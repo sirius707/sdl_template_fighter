@@ -7,3 +7,9 @@ action buttons act only once on hit, can be accomplished by just turning the boo
 
 it seems each module (render, input, game.. etc) should have POINTERS to data it's suppsoed to work on, instead of extern refs
 in some cases(like render) the pointers should point to constant data 
+
+diagonal jump
+
+delta time needs a lot of work
+
+add delta time to jump and gravity

@@ -14,13 +14,21 @@ typedef struct PROGRAM{
 }PROGRAM;
 
 
-typedef struct PLAYER{
+typedef struct CHARACTER{
    float x;float width;
    float y;float height;
    float vel_x;float dx;
    float vel_y;float dy;
 
+   bool flipped;
+
    PLAYER_STATE enum_player_state;
+   bool grounded;
+   bool can_attack;
+
+   CONTROLLER control;//AI or p1 or p2
+   bool movement_control[4];//movement keys. updated by keyboard input or AI depending on control
+   bool action_control[2];//action keys. updated by keyboard input or AI depnding on control
 
    uint8_t hp;
 }CHARACTER;//todo:create 2 characters
