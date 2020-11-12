@@ -58,8 +58,7 @@ int main( int argc, char* args[] )
         s_render_total();
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        //printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", players[0].action_control[ACTION_A], players[0].grounded, players[0].enum_player_state, players[0].vel_y, players[0].y, prog.delta_time);
-        printf("player1 up:%d,  player2 up:%d\r", players[0].movement_control[UP], players[1].movement_control[UP]);
+        printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", players[0].action_control[ACTION_A], players[0].grounded, players[0].enum_player_state, players[0].vel_y, players[0].y, prog.delta_time);
 
 
     }

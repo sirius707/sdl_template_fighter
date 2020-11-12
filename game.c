@@ -48,14 +48,10 @@ void s_game_p1_logic(void)//test function
 
 void s_game_player_logic(void)
 {
-    //for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
-    //    s_game_get_input(&players[i]);
-    //    s_game_player_fsm(&players[i]);
-    //}
-    s_game_get_input(&players[0]);
-    s_game_get_input(&players[1]);
-    s_game_player_fsm(&players[0]);
-    s_game_player_fsm(&players[1]);
+    for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
+        s_game_get_input(&players[i]);
+        s_game_player_fsm(&players[i]);
+    }
 }
 
 inline void s_game_player_fsm(CHARACTER *player)
@@ -68,6 +64,7 @@ inline void s_game_player_fsm(CHARACTER *player)
         if(player->action_control[ACTION_A]){
             player->cache_state = player->enum_player_state;
             player->can_attack = false;
+            player->dx = 0;
             s_game_shift_player_state(player, ATTACK);
         }
     }
@@ -75,8 +72,9 @@ inline void s_game_player_fsm(CHARACTER *player)
     switch(player->enum_player_state){
 
         case IDLE:
-            players->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
-            if(players->movement_control[UP]){
+            player->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
+            if(player->movement_control[UP]){
+
                     player->dy -= DEFAULT_JMPSPD * prog.delta_time;
                     player->grounded = false;
                     player->can_attack = true;
@@ -85,7 +83,7 @@ inline void s_game_player_fsm(CHARACTER *player)
         break;
 
         case JUMP:
-            if(players->y < GROUND_HEIGHT - DEFAULT_MAX_JMPHEIGHT || player->dy > 0){ //if player reached max height or started falling
+            if(player->y < GROUND_HEIGHT - DEFAULT_MAX_JMPHEIGHT || player->dy > 0){ //if player reached max height or started falling
                 player->dy = 0;
                 player->can_attack = true;
                 s_game_shift_player_state(player, FALL);
