@@ -41,4 +41,4 @@ typedef struct{
 }ATK_INFO;//todo:create attack queue
 
 PROGRAM prog;
-CHARACTER players[NUMBER_OF_PLAYERS];
+CHARACTER entities[NUMBER_OF_PLAYERS];

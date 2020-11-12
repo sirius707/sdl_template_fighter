@@ -3,7 +3,6 @@
 
 void init()
 {
-    s_render_init();
     sdl_init();
     prog.fps = 60;
     prog.enum_game_state = RUNNING;

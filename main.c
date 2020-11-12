@@ -13,26 +13,26 @@
 int main( int argc, char* args[] )
 {
     memset(&prog, 0, sizeof(PROGRAM));
-    memset(players, 0, sizeof(CHARACTER)*NUMBER_OF_PLAYERS);
-    players[0].x = 100;
-    players[0].y = 20;
-    players[0].width = 70;
-    players[0].height = 100;
-    players[0].control = PLAYER_ONE;
-    players[0].enum_player_state = FALL;
-    players[0].hp = 100;
-    players[0].can_attack = true;
-    players[0].flipped = false;
+    memset(entities, 0, sizeof(CHARACTER)*NUMBER_OF_PLAYERS);
+    entities[0].x = 100;
+    entities[0].y = 20;
+    entities[0].width = 70;
+    entities[0].height = 100;
+    entities[0].control = PLAYER_ONE;
+    entities[0].enum_player_state = FALL;
+    entities[0].hp = 100;
+    entities[0].can_attack = true;
+    entities[0].flipped = false;
 
-    players[1].x = 250;
-    players[1].y = 20;
-    players[1].width = 70;
-    players[1].height = 100;
-    players[1].control = PLAYER_TWO;
-    players[1].enum_player_state = FALL;
-    players[1].hp = 50;
-    players[1].can_attack = true;
-    players[1].flipped = true;
+    entities[1].x = 250;
+    entities[1].y = 20;
+    entities[1].width = 70;
+    entities[1].height = 100;
+    entities[1].control = PLAYER_TWO;
+    entities[1].enum_player_state = FALL;
+    entities[1].hp = 50;
+    entities[1].can_attack = true;
+    entities[1].flipped = true;
 
     init();
 
@@ -58,7 +58,7 @@ int main( int argc, char* args[] )
         s_render_total();
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", players[0].action_control[ACTION_A], players[0].grounded, players[0].enum_player_state, players[0].vel_y, players[0].y, prog.delta_time);
+        printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", entities[0].action_control[ACTION_A], entities[0].grounded, entities[0].enum_player_state, entities[0].vel_y, entities[0].y, prog.delta_time);
 
 
     }
