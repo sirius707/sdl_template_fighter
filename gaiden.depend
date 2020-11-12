@@ -348,14 +348,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1605139842 source:f:\blocks\sdl_template\main.c
+1605197749 source:f:\blocks\sdl_template\main.c
 	"common.h"
 	"init.h"
 	"render.h"
 	"input.h"
 	"game.h"
 
-1605128553 f:\blocks\sdl_template\common.h
+1605190826 f:\blocks\sdl_template\common.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -363,13 +363,14 @@
 	<ctype.h>
 	<stdint.h>
 	<stdbool.h>
+	<assert.h>
 	"my_sdl_util.h"
 	"defs.h"
 	"structs.h"
 
-1605140169 f:\blocks\sdl_template\defs.h
+1605195995 f:\blocks\sdl_template\defs.h
 
-1605140096 f:\blocks\sdl_template\structs.h
+1605189200 f:\blocks\sdl_template\structs.h
 	"common.h"
 
 1605128729 source:f:\blocks\sdl_template\init.c
@@ -382,18 +383,18 @@
 1604757462 f:\blocks\sdl_template\render.h
 	"common.h"
 
-1605012288 source:f:\blocks\sdl_template\render.c
+1605195479 source:f:\blocks\sdl_template\render.c
 	"render.h"
 
-1604698195 source:f:\blocks\sdl_template\input.c
+1605191188 source:f:\blocks\sdl_template\input.c
 	"input.h"
 
 1604331618 f:\blocks\sdl_template\input.h
 	"common.h"
 
-1605140679 source:f:\blocks\sdl_template\game.c
+1605198047 source:f:\blocks\sdl_template\game.c
 	"game.h"
 
-1605140801 f:\blocks\sdl_template\game.h
+1605186669 f:\blocks\sdl_template\game.h
 	"common.h"
 

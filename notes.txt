@@ -1,0 +1,6 @@
+scan codes and key codes are not the same thing
+i got a bug because events register scan codes while i read keycodes
+action buttons weren't working because of this
+
+animation happens too fast, should the animation and the update happen in different times?
+in unity animation is 24 fps

@@ -21,6 +21,21 @@ void s_render_players(void)
 
             SDL_SetRenderDrawColor(prog.renderer, 255, 255, 255, 255);
             SDL_RenderDrawRect(prog.renderer, &rect);
+
+            if(players[i].enum_player_state == ATTACK){
+
+                if(players[i].flipped)
+                    rect.x = players[i].x - 15 * players[i].frame_counter;
+                else
+                    rect.x = players[i].x + players[i].width;
+
+                rect.y = players[i].y;
+                rect.w = 15 * players[i].frame_counter;
+                rect.h = 20;
+                SDL_SetRenderDrawColor(prog.renderer, 2, 255, 25, 255);
+                SDL_RenderDrawRect(prog.renderer, &rect);
+
+            }
     }
 }
 

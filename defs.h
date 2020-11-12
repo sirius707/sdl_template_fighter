@@ -6,7 +6,7 @@
 
 #define MAX_KEYBOARD_KEYS 350
 
-#define NUMBER_OF_PLAYERS 1
+#define NUMBER_OF_PLAYERS 2
 
 //controls
 #define UP 0
