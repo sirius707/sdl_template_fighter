@@ -4,6 +4,9 @@
 #include "common.h"
 
 
+void init();
+void deinit();
+
 
 void sdl_init();
 void sdl_deinit();

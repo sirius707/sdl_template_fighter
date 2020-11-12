@@ -1,5 +1,6 @@
 #include "game.h"
 
+//external access will be to players, animations and attacks
 extern CHARACTER players[];
 
 void s_game_physics(void)
@@ -34,15 +35,15 @@ void s_game_physics(void)
 
 void s_game_p1_logic(void)//test function
 {
-    int movement_direction = 0; //1 or -1 or 0
-    movement_direction = prog.keyboard[SDLK_RIGHT] + (-prog.keyboard[SDLK_LEFT]);
-    players[0].dx = movement_direction * DEFAULT_XSPD;
+    //int movement_direction = 0; //1 or -1 or 0
+    //movement_direction = prog.keyboard[SDLK_RIGHT] + (-prog.keyboard[SDLK_LEFT]);
+    //players[0].dx = movement_direction * DEFAULT_XSPD;
 
-    if(prog.keyboard[SDLK_UP]){
-            puts("jump");
-            players[0].vel_y += -DEFAULT_JMPSPD;
-            prog.keyboard[SDLK_SPACE] = 0;
-    }
+    //if(prog.keyboard[SDLK_UP]){
+      //      puts("jump");
+        //    players[0].vel_y += -DEFAULT_JMPSPD;
+          //  prog.keyboard[SDLK_SPACE] = 0;
+    //}
 }
 
 void s_game_player_logic(void)
@@ -58,10 +59,12 @@ inline void s_game_player_fsm(CHARACTER *player)
     int movement_direction = 0; //1 or -1 or 0
     movement_direction = player->movement_control[RIGHT] + (-player->movement_control[LEFT]);
 
+    static int frame_counter = 0; //auxilary variables, will use them to simulate frame counting
+
     switch(player->enum_player_state){
 
         case IDLE:
-            players->dx = movement_direction * DEFAULT_XSPD;
+            players->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
             if(players->movement_control[UP]){
                     player->dy -= DEFAULT_JMPSPD * prog.delta_time;
                     player->enum_player_state = JUMP;
@@ -70,6 +73,14 @@ inline void s_game_player_fsm(CHARACTER *player)
         break;
 
         case JUMP:
+            if(players->y < GROUND_HEIGHT - DEFAULT_MAX_JMPHEIGHT || player->dy > 0){ //if player reached max height or started falling
+                player->dy = 0;
+                player->enum_player_state = FALL;
+            }
+
+        break;
+
+        case FALL:
             if(player->grounded){
                 player->enum_player_state = IDLE;
             }
@@ -86,11 +97,14 @@ inline void s_game_get_input(CHARACTER *player)
             player->movement_control[RIGHT] = prog.keyboard[SDLK_RIGHT];
             player->movement_control[DOWN] = prog.keyboard[SDLK_DOWN];
 
-            player->action_control[ACTION_1] = prog.keyboard[SDLK_a];
-            player->action_control[ACTION_1] = prog.keyboard[SDLK_s];
-
+            player->action_control[ACTION_A] = prog.keyboard[SDLK_a];
+            player->action_control[ACTION_B] = prog.keyboard[SDLK_s];
+            player->action_control[ACTION_C] = prog.keyboard[SDLK_z];
+            player->action_control[ACTION_D] = prog.keyboard[SDLK_x];
             prog.keyboard[SDLK_a] = 0;
             prog.keyboard[SDLK_s] = 0;
+            prog.keyboard[SDLK_z] = 0;
+            prog.keyboard[SDLK_x] = 0;
         break;
 
         case PLAYER_TWO:

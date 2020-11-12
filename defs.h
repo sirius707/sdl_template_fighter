@@ -13,11 +13,12 @@
 #define DOWN 1
 #define LEFT 2
 #define RIGHT 3
+#define ACTION_A 0
+#define ACTION_B 1
+#define ACTION_C 2
+#define ACTION_D 3
 
-#define ACTION_1 0
-#define ACTION_2 1
-
-typedef enum{ IDLE, WALK, JUMP, ATTACK, GET_ATTACKED, BLOCK, PARRY}PLAYER_STATE;
+typedef enum{ IDLE, WALK, JUMP, ATTACK, DASH, GET_ATTACKED, BLOCK, PARRY, FALL}PLAYER_STATE;
 typedef enum{ PLAYER_ONE, PLAYER_TWO, AI}CONTROLLER;
 typedef enum{ RUNNING, PAUSED}GAME_STATE;
 

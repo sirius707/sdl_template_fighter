@@ -1,5 +1,18 @@
 #include "init.h"
+#include "render.h"
 
+void init()
+{
+    s_render_init();
+    sdl_init();
+    prog.fps = 60;
+    prog.enum_game_state = RUNNING;
+}
+
+void deinit()
+{
+    sdl_deinit();
+}
 
 void sdl_init()
 {

@@ -1,0 +1,15 @@
+parry bar
+
+different characters can assign, or adjust certain values (dx, dy etc)upon entering a state
+for example chun li can change dx if she hits a wall 
+this can be loaded from the character file and applied in the logic_fsm
+
+we can go two routes when it comes to game play, streetfighter route and tekken route
+in street fighter, detecting actions happens out side the FSM switch, 
+for example if an action button [kick or punch, even a combo executed]is presed, we go to attack animation depending 
+on the value of a boolean called can_hit. which will be set true in states like idle, walking etc
+this might allow animation cancelling, we gotta test this
+
+tekken route:
+all combos are defined in an adjacency table the execution of an attack depends on the value of can_hit and whether there is an entry for it 
+in the adjacency table

@@ -5,10 +5,12 @@
 
 #define GROUND_HEIGHT 400
 #define G 5.5f
-#define DEFAULT_XSPD 2.0f
+#define DEFAULT_WALKSPD 90.0f
 #define DEFAULT_RUNSPD 5.0f
-#define DEFAULT_JMPSPD 15.0f
-#define DEFAULT_FALLSPD 0.7f
+#define DEFAULT_JMPSPD 700.0f
+#define DEFAULT_FALLSPD 20.7f
+
+#define DEFAULT_MAX_JMPHEIGHT 290.f
 
 void s_game_physics(void);
 

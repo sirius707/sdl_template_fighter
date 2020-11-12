@@ -13,3 +13,9 @@ diagonal jump
 delta time needs a lot of work
 
 add delta time to jump and gravity
+
+combo input system
+
+fix delta time erratic behavior when jumping
+
+goto state function
