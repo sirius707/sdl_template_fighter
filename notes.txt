@@ -4,3 +4,5 @@ action buttons weren't working because of this
 
 animation happens too fast, should the animation and the update happen in different times?
 in unity animation is 24 fps
+
+use hungarian notoation, especially for arrays and pointers, it could save you lots of debugging

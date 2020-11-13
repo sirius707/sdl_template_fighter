@@ -27,7 +27,25 @@ void s_game_physics(void)
             entities[i].grounded = true;
         }
 
+        //collision with other players
+        if(entities[i].dx != 0){
+            for(int j = 0; j < NUMBER_OF_PLAYERS; j++){
+                if(j == i)continue;
 
+                if(fabs(entities[i].y - entities[j].y) < entities[i].height/2){//if y collision
+                    if(fabs(entities[i].x - entities[j].x) < entities[i].width*0.8){//if collision with other players
+                       entities[i].dx *= 0.8;//damp walk speed
+
+                       //displace other player
+                       if(entities[i].x < entities[j].x){//if the other player is on the rgiht
+                            entities[j].x = entities[i].x + entities[i].width + 0.2f;
+                       }else{
+                            entities[j].x = entities[i].x - entities[j].width - 0.2f;
+                       }
+                    }
+                }
+            }
+        }
         entities[i].x += entities[i].dx;
 
     }
@@ -64,7 +82,7 @@ inline void s_game_player_fsm(CHARACTER *player)
         if(player->action_control[ACTION_A]){
             player->cache_state = player->enum_player_state;
             player->can_attack = false;
-            player->dx = 0;
+            if(player->grounded)player->dx = 0;
             s_game_shift_player_state(player, ATTACK);
         }
     }
@@ -113,10 +131,10 @@ inline void s_game_get_input(CHARACTER *player)
 {
     switch(player->control){
         case PLAYER_ONE:
-            player->movement_control[UP] = prog.keyboard[SDL_SCANCODE_UP];
-            player->movement_control[LEFT] = prog.keyboard[SDL_SCANCODE_LEFT];
-            player->movement_control[RIGHT] = prog.keyboard[SDL_SCANCODE_RIGHT];
-            player->movement_control[DOWN] = prog.keyboard[SDL_SCANCODE_DOWN];
+            player->movement_control[UP] = prog.keyboard[SDL_SCANCODE_U];
+            player->movement_control[LEFT] = prog.keyboard[SDL_SCANCODE_H];
+            player->movement_control[RIGHT] = prog.keyboard[SDL_SCANCODE_K];
+            player->movement_control[DOWN] = prog.keyboard[SDL_SCANCODE_J];
 
             player->action_control[ACTION_A] = prog.keyboard[SDL_SCANCODE_A];
             player->action_control[ACTION_B] = prog.keyboard[SDL_SCANCODE_S];
@@ -131,15 +149,20 @@ inline void s_game_get_input(CHARACTER *player)
 
         case PLAYER_TWO:
 
-            player->movement_control[UP] = 0;
-            player->movement_control[LEFT] = 0;
-            player->movement_control[RIGHT] = 0;
-            player->movement_control[DOWN] = 0;
+            player->movement_control[UP] = prog.keyboard[SDL_SCANCODE_UP];
+            player->movement_control[LEFT] = prog.keyboard[SDL_SCANCODE_LEFT];
+            player->movement_control[RIGHT] = prog.keyboard[SDL_SCANCODE_RIGHT];
+            player->movement_control[DOWN] = prog.keyboard[SDL_SCANCODE_DOWN];
 
-            player->action_control[ACTION_A] = 0;
-            player->action_control[ACTION_B] = 0;
-            player->action_control[ACTION_C] = 0;
-            player->action_control[ACTION_D] = 0;
+            player->action_control[ACTION_A] = prog.keyboard[SDL_SCANCODE_9];
+            player->action_control[ACTION_B] = prog.keyboard[SDL_SCANCODE_0];
+            player->action_control[ACTION_C] = prog.keyboard[SDL_SCANCODE_O];
+            player->action_control[ACTION_D] = prog.keyboard[SDL_SCANCODE_P];
+
+            prog.keyboard[SDL_SCANCODE_9] = 0;
+            prog.keyboard[SDL_SCANCODE_0] = 0;
+            prog.keyboard[SDL_SCANCODE_O] = 0;
+            prog.keyboard[SDL_SCANCODE_P] = 0;
 
             break;
 

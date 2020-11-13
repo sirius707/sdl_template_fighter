@@ -7,7 +7,7 @@
 
 
 //2d fighting game
-
+// data oriented and data driven
 
 
 int main( int argc, char* args[] )
@@ -58,7 +58,8 @@ int main( int argc, char* args[] )
         s_render_total();
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", entities[0].action_control[ACTION_A], entities[0].grounded, entities[0].enum_player_state, entities[0].vel_y, entities[0].y, prog.delta_time);
+        //printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", entities[0].action_control[ACTION_A], entities[0].grounded, entities[0].enum_player_state, entities[0].vel_y, entities[0].y, prog.delta_time);
+        printf("%03d %03d\r", entities[0].hp, entities[1].hp);
 
 
     }
