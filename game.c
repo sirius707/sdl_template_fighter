@@ -27,7 +27,7 @@ void s_game_physics(void)
             entities[i].grounded = true;
         }
 
-        //collision with other players
+        //collision with other players and flipping
         if(entities[i].dx != 0){
             for(int j = 0; j < NUMBER_OF_PLAYERS; j++){
                 if(j == i)continue;
@@ -35,7 +35,6 @@ void s_game_physics(void)
                 if(fabs(entities[i].y - entities[j].y) < entities[i].height/2){//if y collision
                     if(fabs(entities[i].x - entities[j].x) < entities[i].width*0.8){//if collision with other players
                        entities[i].dx *= 0.8;//damp walk speed
-
                        //displace other player
                        if(entities[i].x < entities[j].x){//if the other player is on the rgiht
                             entities[j].x = entities[i].x + entities[i].width + 0.2f;
@@ -45,8 +44,10 @@ void s_game_physics(void)
                     }
                 }
             }
+
+            entities[i].x += entities[i].dx;
         }
-        entities[i].x += entities[i].dx;
+
 
     }
 }
@@ -78,7 +79,6 @@ inline void s_game_player_fsm(CHARACTER *player)
     movement_direction = player->movement_control[RIGHT] + (-player->movement_control[LEFT]);
 
     if(player->can_attack){
-        int tmp = player->action_control[ACTION_A];
         if(player->action_control[ACTION_A]){
             player->cache_state = player->enum_player_state;
             player->can_attack = false;
@@ -86,6 +86,8 @@ inline void s_game_player_fsm(CHARACTER *player)
             s_game_shift_player_state(player, ATTACK);
         }
     }
+
+    if(player->grounded)player->flipped = player->enemy->x < player->x;//flip player if facing wrong direction
 
     switch(player->enum_player_state){
 

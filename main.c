@@ -23,6 +23,7 @@ int main( int argc, char* args[] )
     entities[0].hp = 100;
     entities[0].can_attack = true;
     entities[0].flipped = false;
+    entities[0].enemy = &entities[1];
 
     entities[1].x = 250;
     entities[1].y = 20;
@@ -33,6 +34,8 @@ int main( int argc, char* args[] )
     entities[1].hp = 50;
     entities[1].can_attack = true;
     entities[1].flipped = true;
+    entities[1].enemy = &entities[0];
+
 
     init();
 
@@ -59,7 +62,7 @@ int main( int argc, char* args[] )
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
         //printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", entities[0].action_control[ACTION_A], entities[0].grounded, entities[0].enum_player_state, entities[0].vel_y, entities[0].y, prog.delta_time);
-        printf("%03d %03d\r", entities[0].hp, entities[1].hp);
+        printf("%03d %03d flip: %d, %d\r", entities[0].hp, entities[1].hp, entities[0].flipped, entities[1].flipped);
 
 
     }

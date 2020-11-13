@@ -21,6 +21,7 @@ typedef struct CHARACTER{
    float vel_y;float dy;
 
    bool flipped;
+   struct CHARACTER *enemy;//we need this so we can flip the sprite to "look at the enemy"
 
    PLAYER_STATE enum_player_state;
    PLAYER_STATE cache_state;//temporary state that will be use to store current state if we shift to attack state, attack state is responsible for returning us to the cached state
