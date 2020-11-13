@@ -59,6 +59,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="my_sdl_util.h" />
+		<Unit filename="physics.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="physics.h" />
 		<Unit filename="render.c">
 			<Option compilerVar="CC" />
 		</Unit>

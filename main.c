@@ -31,7 +31,7 @@ int main( int argc, char* args[] )
     entities[1].height = 100;
     entities[1].control = PLAYER_TWO;
     entities[1].enum_player_state = FALL;
-    entities[1].hp = 50;
+    entities[1].hp = 100;
     entities[1].can_attack = true;
     entities[1].flipped = true;
     entities[1].enemy = &entities[0];
@@ -56,14 +56,13 @@ int main( int argc, char* args[] )
         s_input();
 
         s_game_player_logic();
-        s_game_physics();
+        s_physics();
         prog.delta_time = (double)((NOW - LAST)/ (double)SDL_GetPerformanceFrequency() );//temporary until a fix is found
         s_render_total();
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
         //printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", entities[0].action_control[ACTION_A], entities[0].grounded, entities[0].enum_player_state, entities[0].vel_y, entities[0].y, prog.delta_time);
-        printf("%03d %03d flip: %d, %d\r", entities[0].hp, entities[1].hp, entities[0].flipped, entities[1].flipped);
-
+        printf("%03d %03d flip: %d, %d %d\r", entities[0].hp, entities[1].hp, entities[0].flipped, entities[1].flipped);
 
     }
 
