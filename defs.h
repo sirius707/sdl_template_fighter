@@ -8,6 +8,8 @@
 
 #define NUMBER_OF_PLAYERS 2
 
+#define NUMBER_OF_ANIMATIONS 1
+
 //controls
 #define UP 0
 #define DOWN 1
@@ -17,6 +19,12 @@
 #define ACTION_B 1
 #define ACTION_C 2
 #define ACTION_D 3
+
+//animation
+#define MAX_SEQUENCES 30
+#define MAX_FRAMES 30
+
+#define MAX_CHARACTER_STATES 15
 
 typedef enum{ IDLE, WALK, JUMP, ATTACK, DASH, GET_ATTACKED, BLOCK, PARRY, FALL}PLAYER_STATE;
 typedef enum{ PLAYER_ONE, PLAYER_TWO, AI}CONTROLLER;

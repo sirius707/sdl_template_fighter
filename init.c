@@ -28,7 +28,7 @@ void sdl_init()
 		exit(1);
 	}
 
-	prog.window = SDL_CreateWindow("Shooter 01", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_W, SCREEN_H, windowFlags);
+	prog.window = SDL_CreateWindow("ong dyote", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_W, SCREEN_H, windowFlags);
 
 	if (!prog.window)
 	{

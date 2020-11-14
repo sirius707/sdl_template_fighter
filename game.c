@@ -7,6 +7,7 @@ void s_game_player_logic(void)
 {
     for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
         s_game_get_input(&entities[i]);
+        s_game_animate(&entities[i]);
         s_game_player_fsm(&entities[i]);
     }
 }
@@ -120,6 +121,24 @@ inline void s_game_get_input(CHARACTER *player)
 inline void s_game_shift_player_state(CHARACTER *player, PLAYER_STATE state)
 {
     player->enum_player_state = state;
+    player->frame_counter = 0;
+    player->current_frame = 0;
+    player->animation_end = false;
+    player->current_squence = player->ptr_animation->default_states[state];
     //change animation
     //adjust values if need be
+}
+
+inline void s_game_animate(CHARACTER *player)
+{
+    //if at went beyond last frame loop
+    //other wise advance frame by 1
+
+    const ANIMATION *ptr_animation = player->ptr_animation;
+    uint8_t *sequence = &player->current_squence;
+    uint8_t *frame = &player->current_frame;
+
+    player->animation_end = !(ptr_animation->frames[*sequence][++(*frame)].active);
+    if(player->animation_end)*frame = 0;
+
 }

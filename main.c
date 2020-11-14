@@ -14,6 +14,24 @@ int main( int argc, char* args[] )
 {
     memset(&prog, 0, sizeof(PROGRAM));
     memset(entities, 0, sizeof(CHARACTER)*NUMBER_OF_PLAYERS);
+    memset(animations, 0, sizeof(ANIMATION)*NUMBER_OF_ANIMATIONS);
+
+    strcpy(animations[0].name, "stephan");//what does stephan mean
+    //animations[0].sprite_sheet;
+    animations[0].transition_table[FALL][IDLE] = 0;
+    animations[0].default_states[IDLE] = 0;
+    animations[0].default_states[FALL] = 1;
+    //idle frames
+    animations[0].frames[0][0].data = 0x01;animations[0].frames[0][0].active = 1;
+    animations[0].frames[0][1].data = 0x02;animations[0].frames[0][1].active = 1;
+    animations[0].frames[0][2].data = 0x03;animations[0].frames[0][2].active = 1;
+
+    //fall frames
+    animations[0].frames[1][0].data = 0x11;animations[0].frames[1][0].active = 1;
+    animations[0].frames[1][1].data = 0x12;animations[0].frames[1][1].active = 1;
+    animations[0].frames[1][2].data = 0x13;animations[0].frames[1][2].active = 1;
+
+
     entities[0].x = 100;
     entities[0].y = 20;
     entities[0].width = 70;
@@ -24,6 +42,8 @@ int main( int argc, char* args[] )
     entities[0].can_attack = true;
     entities[0].flipped = false;
     entities[0].enemy = &entities[1];
+    entities[0].ptr_animation = &animations[0];
+    entities[0].current_squence = 1;//fall
 
     entities[1].x = 250;
     entities[1].y = 20;
@@ -35,8 +55,8 @@ int main( int argc, char* args[] )
     entities[1].can_attack = true;
     entities[1].flipped = true;
     entities[1].enemy = &entities[0];
-
-
+    entities[1].ptr_animation = &animations[0];
+    entities[1].current_squence = 1;//fall
     init();
 
     //frame rate capping
@@ -62,7 +82,7 @@ int main( int argc, char* args[] )
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
         //printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", entities[0].action_control[ACTION_A], entities[0].grounded, entities[0].enum_player_state, entities[0].vel_y, entities[0].y, prog.delta_time);
-        printf("%03d %03d flip: %d, %d %d\r", entities[0].hp, entities[1].hp, entities[0].flipped, entities[1].flipped);
+        printf("%03d %03d seqs: %03d, %03d \r", entities[0].current_frame, entities[1].current_frame, entities[0].current_squence, entities[1].current_squence);
 
     }
 
