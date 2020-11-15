@@ -31,6 +31,9 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-pedantic-errors" />
+			<Add option="-pedantic" />
+			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add directory="G:/Programs/libraries and stuff/SDL2-devel-2.0.9-mingw/SDL2-2.0.9/i686-w64-mingw32/include/SDL2" />
 		</Compiler>

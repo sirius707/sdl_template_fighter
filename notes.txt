@@ -6,3 +6,5 @@ animation happens too fast, should the animation and the update happen in differ
 in unity animation is 24 fps
 
 use hungarian notoation, especially for arrays and pointers, it could save you lots of debugging
+
+when rendering, if a character is flipped, subtract the width of the character from the rendered x_position

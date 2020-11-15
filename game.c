@@ -124,7 +124,8 @@ inline void s_game_shift_player_state(CHARACTER *player, PLAYER_STATE state)
     player->frame_counter = 0;
     player->current_frame = 0;
     player->animation_end = false;
-    player->current_squence = player->ptr_animation->default_states[state];
+    //check transition table first
+    player->current_squence = player->ptr_animation->default_seqs[state];
     //change animation
     //adjust values if need be
 }

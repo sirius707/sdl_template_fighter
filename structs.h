@@ -16,8 +16,8 @@ typedef struct PROGRAM{
 
 typedef struct FRAME{
     bool active;
-    uint8_t column;
-    uint8_t row;
+    uint16_t x;
+    uint16_t y;
     uint8_t data;
 }ANIMATION_FRAME;
 
@@ -25,7 +25,7 @@ typedef struct ANIMATION{
     char name[20];
     ANIMATION_FRAME frames[MAX_SEQUENCES][MAX_FRAMES];
     uint8_t transition_table[MAX_SEQUENCES][MAX_CHARACTER_STATES];//for when a sequence is interrupted by a state
-    uint8_t default_states[MAX_CHARACTER_STATES];//index is player state, value is sequence, default to this if there is nothing in transition table
+    uint8_t default_seqs[MAX_CHARACTER_STATES];//index is player state, value is sequence, default to this if there is nothing in transition table
     SDL_Texture *sprite_sheet;
 }ANIMATION;
 
@@ -59,7 +59,7 @@ typedef struct CHARACTER{
 
 
 typedef struct{
-
+    uint16_t data;
 }ATK_INFO;//todo:create attack queue
 
 
