@@ -28,7 +28,7 @@ int main( int argc, char* args[] )
     entities[0].can_attack = true;
     entities[0].flipped = false;
     entities[0].enemy = &entities[1];
-    entities[0].ptr_animation = &animations[0];
+    entities[0].ptr_animation = &animations[1];
     entities[0].current_squence = 1;//fall
 
     entities[1].x = 450;
@@ -51,6 +51,8 @@ int main( int argc, char* args[] )
     }
 
     {//character 1
+        animations[0].sprite_y_displacement = -40;
+        animations[0].sprite_x_displacement = 20;
         animations[0].sprite_sheet = accelerate_surface(temp_surface, prog.renderer, SDL_MapRGB(temp_surface->format, 128, 128, 192));
         assert(animations[0].sprite_sheet !=  NULL);
         animations[0].sprite_w = 96;
@@ -86,9 +88,47 @@ int main( int argc, char* args[] )
         animations[0].frames[1][0].x = 96*9;animations[0].frames[1][0].y = 96*1;animations[0].frames[1][0].active = 1;
     }
 
+    temp_surface = SDL_LoadBMP("data\\jin.bmp");
+    if(temp_surface == NULL){
+        return EXIT_FAILURE;
+    }
     {//character 2
+        animations[1].sprite_y_displacement = -20;
+        animations[1].sprite_x_displacement = 20;
+        animations[1].sprite_sheet = accelerate_surface(temp_surface, prog.renderer, SDL_MapRGB(temp_surface->format, 192, 220, 192));
+        assert(animations[1].sprite_sheet !=  NULL);
+        animations[1].sprite_w = 159;
+        animations[1].sprite_h = 159;
+        animations[1].sprite_scale = 2;
+
+        animations[1].transition_table[FALL][IDLE] = 0;
+        animations[1].default_seqs[IDLE] = 0;
+        animations[1].default_seqs[FALL] = 1;
+        animations[1].default_seqs[WALK] = 2;
+        animations[1].default_seqs[JUMP] = 3;
+
+        //idle frames
+        animations[1].frames[0][0].x = 0;animations[1].frames[0][0].y = 0;animations[1].frames[0][0].active = 1;
+        animations[1].frames[0][1].x = 159;animations[1].frames[0][1].y = 0;animations[1].frames[0][1].active = 1;
+        animations[1].frames[0][2].x = 159*2;animations[1].frames[0][2].y = 0;animations[1].frames[0][2].active = 1;
+        animations[1].frames[0][3].x = 159*3;animations[1].frames[0][3].y = 0;animations[1].frames[0][3].active = 1;
+
+        //walk frames
+        animations[1].frames[2][0].x = 159*4;animations[1].frames[2][0].y = 0;animations[1].frames[2][0].active = 1;
+        animations[1].frames[2][1].x = 159*5;animations[1].frames[2][1].y = 0;animations[1].frames[2][1].active = 1;
+        animations[1].frames[2][2].x = 159*6;animations[1].frames[2][2].y = 0;animations[1].frames[2][2].active = 1;
+        animations[1].frames[2][3].x = 159*7;animations[1].frames[2][3].y = 0;animations[1].frames[2][3].active = 1;
+        animations[1].frames[2][4].x = 159*8;animations[1].frames[2][4].y = 0;animations[1].frames[2][4].active = 1;
+        animations[1].frames[2][5].x = 159*9;animations[1].frames[2][5].y = 0;animations[1].frames[2][5].active = 1;
+
+        //jump frames
+        animations[1].frames[3][0].x = 159*10;animations[1].frames[3][0].y = 0;animations[1].frames[3][0].active = 1;
+
+        //fall frames
+        animations[1].frames[1][0].x = 159*11;animations[1].frames[1][0].y = 0;animations[1].frames[1][0].active = 1;
 
     }
+
     //frame rate capping
     long then;
     float remaining_time = 0;

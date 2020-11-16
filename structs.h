@@ -29,6 +29,8 @@ typedef struct ANIMATION{
 
     uint8_t sprite_w;//visual width, used in rednering, must be bigger than logical width
     uint8_t sprite_h;//visual height, used in rednering, must be bigger than logical height
+    int8_t sprite_x_displacement;
+    int8_t sprite_y_displacement;
     uint32_t sprite_scale;//visual scale of the sprite
 
     SDL_Texture *sprite_sheet;

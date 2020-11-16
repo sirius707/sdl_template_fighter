@@ -5,7 +5,7 @@
 
 void s_render_init(void);
 
-void s_render_players(void);
+void s_render_entities(void);
 
 void s_render_prepare(void);
 void s_render_present(void);

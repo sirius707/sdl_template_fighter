@@ -36,13 +36,13 @@ void s_render_entities_test(void)
     }
 }
 
-void s_render_entities(void)
+inline void s_render_entities(void)
 {
     SDL_SetRenderDrawColor(prog.renderer, 0, 0, 0, 255);
     SDL_RenderClear(prog.renderer);
 
     for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
-          SDL_Texture *sprites = entities->ptr_animation->sprite_sheet;
+          SDL_Texture *sprites = entities[i].ptr_animation->sprite_sheet;
           uint8_t current_frame;
           uint8_t current_seq;
           uint32_t sprite_scale;
@@ -50,6 +50,9 @@ void s_render_entities(void)
           uint32_t sprite_h;
           uint32_t x_spritesheet;
           uint32_t y_spritesheet;
+          int8_t x_displacement;
+          int8_t y_displacement;
+          bool flipped;
 
           sprite_scale = entities[i].ptr_animation->sprite_scale;
           sprite_w = entities[i].ptr_animation->sprite_w;
@@ -60,24 +63,21 @@ void s_render_entities(void)
           x_spritesheet = entities[i].ptr_animation->frames[current_seq][current_frame].x;
           y_spritesheet = entities[i].ptr_animation->frames[current_seq][current_frame].y;
 
+          x_displacement = entities[i].ptr_animation->sprite_x_displacement;
+          y_displacement = entities[i].ptr_animation->sprite_y_displacement;
+
+          flipped = entities[i].flipped;
+
           SDL_Rect source;
             source.x = x_spritesheet;
             source.y = y_spritesheet;
             source.w = sprite_w;
             source.h = sprite_h;
 
-          SDL_Rect rect;
-            rect.x = entities[i].x;
-            rect.y = entities[i].y;
-            rect.w = entities[i].width;
-            rect.h = entities[i].height;
-
-            SDL_SetRenderDrawColor(prog.renderer, 255, 255, 255, 255);
-            SDL_RenderDrawRect(prog.renderer, &rect);
-
+            SDL_Rect rect;
             //draw the sprite in the middle of the player box
-            rect.x = entities[i].x - (sprite_w*sprite_scale - entities[i].width)/2;
-            rect.y = entities[i].y - (sprite_h*sprite_scale - entities[i].height)/2;
+            rect.x = (entities[i].x - (sprite_w*sprite_scale - entities[i].width)/2) + x_displacement * (flipped?-1:1);
+            rect.y = (entities[i].y - (sprite_h*sprite_scale - entities[i].height)/2) + y_displacement;
             rect.w = sprite_w * sprite_scale;
             rect.h = sprite_h * sprite_scale;
 
@@ -86,6 +86,16 @@ void s_render_entities(void)
             }else{
                 SDL_RenderCopy(prog.renderer, sprites, &source, &rect);
             }
+
+
+            rect.x = entities[i].x;
+            rect.y = entities[i].y;
+            rect.w = entities[i].width;
+            rect.h = entities[i].height;
+
+            SDL_SetRenderDrawColor(prog.renderer, 255, 255, 255, 255);
+            SDL_RenderDrawRect(prog.renderer, &rect);
+
 
     }
 }
