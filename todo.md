@@ -23,6 +23,8 @@ goto state function
 animation, attacks, combo system, animation frame rate, sounds
 reduce speed when walking backwards, load from files, delay on hit
 
+multiple renderers for layers
+
 data files
 
 

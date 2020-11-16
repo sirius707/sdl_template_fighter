@@ -17,8 +17,9 @@ SDL_Surface *optimise_surface(SDL_Surface *surface, const SDL_Surface *opt_for)
     return NULL;
 }
 
-SDL_Texture *accelerate_surface(SDL_Surface *surface, SDL_Renderer *renderer)
+SDL_Texture *accelerate_surface(SDL_Surface *surface, SDL_Renderer *renderer, Uint32 colorkey)
 {
+    SDL_SetColorKey(surface, SDL_TRUE, colorkey);
     SDL_Texture *result = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
     return result;

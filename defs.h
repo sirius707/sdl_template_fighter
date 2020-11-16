@@ -8,7 +8,9 @@
 
 #define NUMBER_OF_PLAYERS 2
 
-#define NUMBER_OF_ANIMATIONS 1
+#define NUMBER_OF_ANIMATIONS 2
+
+#define ANIMATION_PLAY_RATE 9.0 //how many animation frames to play per second
 
 //controls
 #define UP 0
