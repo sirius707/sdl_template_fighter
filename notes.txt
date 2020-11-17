@@ -11,3 +11,7 @@ when rendering, if a character is flipped, subtract the width of the character f
 
 sprite width and height should vary between characters
 as well as logical width and height vb
+
+executing attacks needs to be synchronized with animation
+
+make distinction between can attack and is attacking

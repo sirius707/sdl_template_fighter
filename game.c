@@ -9,7 +9,7 @@ void s_game_player_logic(void)
         s_game_get_input(&entities[i]);
         s_game_animate(&entities[i]);
         s_game_player_fsm(&entities[i]);
-        //s_game_process_attacks(&entities[i]);
+        s_game_process_attacks(&entities[i]);
     }
 }
 
@@ -81,18 +81,17 @@ inline void s_game_player_fsm(CHARACTER *player)
 
         case ATTACK:
             if(player->grounded)player->dx = 0;
-            uint32_t seq, frame;
-
-            seq = player->current_squence;
-            frame = player->current_frame;
-            player->can_attack = player->ptr_animation->frames[seq][frame].data;
-
             if(player->animation_end){
                 player->animation_end = false;
                 player->can_attack = true;
                 s_game_shift_player_state(player, player->cache_state);
             }
-        }
+        break;
+
+        default:
+            fprintf(stderr, "unkown state\n");
+        break;
+    }
 }
 
 inline void s_game_get_input(CHARACTER *player)
@@ -161,7 +160,7 @@ inline void s_game_shift_player_state(CHARACTER *player, PLAYER_STATE state)
 inline void s_game_process_attacks(CHARACTER *player)
 {
     if(player->is_attacking){
-        printf("attack");
+        printf("attack %d\n", player->current_frame);
         player->is_attacking = false;
     }
 }
@@ -175,6 +174,8 @@ inline void s_game_animate(CHARACTER *player)
         const ANIMATION *ptr_animation = player->ptr_animation;
         uint8_t *sequence = &player->current_squence;
         uint8_t *frame = &player->current_frame;
+
+        player->is_attacking = player->ptr_animation->frames[*sequence][*frame].data;
 
         player->animation_end = !(ptr_animation->frames[*sequence][++(*frame)].active);
         if(player->animation_end)*frame = 0;
