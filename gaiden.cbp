@@ -12,9 +12,17 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-Wredundant-decls" />
+					<Add option="-Wcast-align" />
+					<Add option="-Wfloat-equal" />
+					<Add option="-Wunreachable-code" />
+					<Add option="-Wmissing-declarations" />
+					<Add option="-pedantic" />
+					<Add option="-Wfatal-errors" />
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-g" />
+					<Add option="-pedantic" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -31,6 +39,8 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-Wfloat-equal" />
+			<Add option="-Wunreachable-code" />
 			<Add option="-pedantic-errors" />
 			<Add option="-pedantic" />
 			<Add option="-Wextra" />

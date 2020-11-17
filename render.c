@@ -96,7 +96,6 @@ inline void s_render_entities(void)
             SDL_SetRenderDrawColor(prog.renderer, 255, 255, 255, 255);
             SDL_RenderDrawRect(prog.renderer, &rect);
 
-
     }
 }
 void s_render_prepare(void)

@@ -53,15 +53,19 @@ inline void s_game_player_fsm(CHARACTER *player)
 
                     player->dy -= DEFAULT_JMPSPD * prog.delta_time;
                     player->grounded = false;
-                    player->can_attack = true;
+                    //player->can_attack = true;
                     s_game_shift_player_state(player, JUMP);
             }
         break;
 
         case JUMP:
-            if(player->y < GROUND_HEIGHT - DEFAULT_MAX_JMPHEIGHT || player->dy > 0){ //if player reached max height or started falling
+            if(player->y >= GROUND_HEIGHT){//if player reached max height
                 player->dy = 0;
-                player->can_attack = true;
+            }
+
+            if(player->dy > 0){ // started falling
+
+                //player->can_attack = true;
                 s_game_shift_player_state(player, FALL);
             }
 
@@ -69,18 +73,17 @@ inline void s_game_player_fsm(CHARACTER *player)
 
         case FALL:
             if(player->grounded){
-                player->can_attack = true;
+                //player->can_attack = true;
                 s_game_shift_player_state(player, IDLE);
             }
         break;
 
         case ATTACK:
-            if(player->frame_counter >= 10){
-                player->frame_counter = 0;
+            if(player->grounded)player->dx = 0;
+            if(player->animation_end){
+                player->animation_end = false;
                 player->can_attack = true;
                 s_game_shift_player_state(player, player->cache_state);
-            }else{
-                player->frame_counter++;
             }
         }
 }

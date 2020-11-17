@@ -98,7 +98,7 @@ int main( int argc, char* args[] )
         animations[1].sprite_sheet = accelerate_surface(temp_surface, prog.renderer, SDL_MapRGB(temp_surface->format, 192, 220, 192));
         assert(animations[1].sprite_sheet !=  NULL);
         animations[1].sprite_w = 159;
-        animations[1].sprite_h = 159;
+        animations[1].sprite_h = 169;
         animations[1].sprite_scale = 2;
 
         animations[1].transition_table[FALL][IDLE] = 0;
@@ -106,6 +106,7 @@ int main( int argc, char* args[] )
         animations[1].default_seqs[FALL] = 1;
         animations[1].default_seqs[WALK] = 2;
         animations[1].default_seqs[JUMP] = 3;
+        animations[1].default_seqs[ATTACK] = 4;
 
         //idle frames
         animations[1].frames[0][0].x = 0;animations[1].frames[0][0].y = 0;animations[1].frames[0][0].active = 1;
@@ -126,6 +127,13 @@ int main( int argc, char* args[] )
 
         //fall frames
         animations[1].frames[1][0].x = 159*11;animations[1].frames[1][0].y = 0;animations[1].frames[1][0].active = 1;
+
+        //attack frames
+        animations[1].frames[4][0].x = 159;animations[1].frames[4][0].y = 0;animations[1].frames[4][0].active = 1;
+        animations[1].frames[4][1].x = 159*0;animations[1].frames[4][1].y = 169*8;animations[1].frames[4][1].active = 1;
+        animations[1].frames[4][2].x = 159*1;animations[1].frames[4][2].y = 169*8;animations[1].frames[4][2].active = 1;
+        animations[1].frames[4][3].x = 159*1;animations[1].frames[4][3].y = 169*8;animations[1].frames[4][3].active = 1;
+        animations[1].frames[4][4].x = 159*2;animations[1].frames[4][4].y = 169*8;animations[1].frames[4][4].active = 1;
 
     }
 
