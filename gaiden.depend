@@ -349,7 +349,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1605581038 source:f:\blocks\sdl_template\main.c
+1605622002 source:f:\blocks\sdl_template\main.c
 	"common.h"
 	"init.h"
 	"render.h"
@@ -370,7 +370,7 @@
 	"defs.h"
 	"structs.h"
 
-1605553134 f:\blocks\sdl_template\defs.h
+1605621950 f:\blocks\sdl_template\defs.h
 
 1605552219 f:\blocks\sdl_template\structs.h
 	"common.h"
