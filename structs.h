@@ -14,6 +14,11 @@ typedef struct PROGRAM{
 }PROGRAM;
 
 
+typedef struct{
+    uint16_t data;
+    ATTACK_TYPE type;
+}ATK_INFO;//todo:create attack queue
+
 typedef struct FRAME{
     bool active;
     uint32_t x;
@@ -57,6 +62,7 @@ typedef struct CHARACTER{
    PLAYER_STATE cache_state;//temporary state that will be use to store current state if we shift to attack state, attack state is responsible for returning us to the cached state
    bool grounded;
    bool can_attack;
+   bool is_attacking;
 
    CONTROLLER control;//AI or p1 or p2
    bool movement_control[4];//movement keys. updated by keyboard input or AI depending on control
@@ -64,11 +70,6 @@ typedef struct CHARACTER{
 
    uint8_t hp;
 }CHARACTER;//todo:create 2 characters
-
-
-typedef struct{
-    uint16_t data;
-}ATK_INFO;//todo:create attack queue
 
 
 PROGRAM prog;

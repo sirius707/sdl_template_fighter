@@ -28,7 +28,7 @@ int main( int argc, char* args[] )
     entities[0].can_attack = true;
     entities[0].flipped = false;
     entities[0].enemy = &entities[1];
-    entities[0].ptr_animation = &animations[2];
+    entities[0].ptr_animation = &animations[1];
     entities[0].current_squence = 1;//fall
 
     entities[1].x = 450;
@@ -132,7 +132,7 @@ int main( int argc, char* args[] )
         animations[1].frames[4][0].x = 159;animations[1].frames[4][0].y = 0;animations[1].frames[4][0].active = 1;
         animations[1].frames[4][1].x = 159*0;animations[1].frames[4][1].y = 169*8;animations[1].frames[4][1].active = 1;
         animations[1].frames[4][2].x = 159*1;animations[1].frames[4][2].y = 169*8;animations[1].frames[4][2].active = 1;
-        animations[1].frames[4][3].x = 159*1;animations[1].frames[4][3].y = 169*8;animations[1].frames[4][3].active = 1;
+        animations[1].frames[4][3].x = 159*1;animations[1].frames[4][3].y = 169*8;animations[1].frames[4][3].active = 1;animations[1].frames[4][3].data = 1;
         animations[1].frames[4][4].x = 159*2;animations[1].frames[4][4].y = 169*8;animations[1].frames[4][4].active = 1;
 
     }
@@ -208,7 +208,7 @@ int main( int argc, char* args[] )
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
         //printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", entities[0].action_control[ACTION_A], entities[0].grounded, entities[0].enum_player_state, entities[0].vel_y, entities[0].y, prog.delta_time);
-        printf("%03d %03d \r", entities[0].current_frame,  entities[0].current_squence);
+       // printf("%03d %03d \r", entities[0].current_frame,  entities[0].current_squence);
 
     }
 

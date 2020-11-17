@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1605581059 source:f:\blocks\sdl_template\my_sdl_util.c
+1605630389 source:f:\blocks\sdl_template\my_sdl_util.c
 	"my_sdl_util.h"
 	<assert.h>
 
-1605445626 f:\blocks\sdl_template\my_sdl_util.h
+1605630389 f:\blocks\sdl_template\my_sdl_util.h
 	<SDL.h>
 	"stdio.h"
 
@@ -349,7 +349,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1605622002 source:f:\blocks\sdl_template\main.c
+1605633909 source:f:\blocks\sdl_template\main.c
 	"common.h"
 	"init.h"
 	"render.h"
@@ -370,22 +370,22 @@
 	"defs.h"
 	"structs.h"
 
-1605621950 f:\blocks\sdl_template\defs.h
+1605633096 f:\blocks\sdl_template\defs.h
 
-1605552219 f:\blocks\sdl_template\structs.h
+1605633088 f:\blocks\sdl_template\structs.h
 	"common.h"
 
-1605355037 source:f:\blocks\sdl_template\init.c
+1605630389 source:f:\blocks\sdl_template\init.c
 	"init.h"
 	"render.h"
 
 1605128527 f:\blocks\sdl_template\init.h
 	"common.h"
 
-1605550025 f:\blocks\sdl_template\render.h
+1605630389 f:\blocks\sdl_template\render.h
 	"common.h"
 
-1605580039 source:f:\blocks\sdl_template\render.c
+1605633885 source:f:\blocks\sdl_template\render.c
 	"render.h"
 
 1605191188 source:f:\blocks\sdl_template\input.c
@@ -394,10 +394,10 @@
 1604331618 f:\blocks\sdl_template\input.h
 	"common.h"
 
-1605616386 source:f:\blocks\sdl_template\game.c
+1605633941 source:f:\blocks\sdl_template\game.c
 	"game.h"
 
-1605354749 f:\blocks\sdl_template\game.h
+1605633164 f:\blocks\sdl_template\game.h
 	"common.h"
 
 1605527028 source:f:\blocks\sdl_template\physics.c
