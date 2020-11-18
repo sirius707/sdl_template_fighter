@@ -49,10 +49,10 @@ inline long s_cap_framerate(long *then, float *remainder, size_t fps)
 inline bool aab_collision(float x1, float y1, float x2, float y2, float w1, float h1, float w2, float h2)
 {
     bool c1, c2, c3, c4;//conditions that must be fulfilled to know that there is no collision
-    c1 = y1 >= y2 + h2;
-    c2 = x1 >= x2 + w2;
-    c3 = y2 >= y1 + h1;
-    c4 = x2 >= x1 + w1;
+    c1 = y1 < y2 + h2;
+    c2 = x1 < x2 + w2;
+    c3 = y1 + h1 > y2;
+    c4 = x1 + w1 > x2;
 
-    return !(c1 || c2 || c3 || c4);
+    return (c1 && c2 && c3 && c4);
 }

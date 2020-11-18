@@ -8,7 +8,7 @@ void s_physics(void)
     //entities
     for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
 
-
+        entities[i].grounded = false;
         //gravity
         //entities[i].vel_y += G * prog.delta_time;
         entities[i].dy += DEFAULT_FALLSPD * prog.delta_time;

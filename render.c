@@ -1,5 +1,5 @@
 #include "render.h"
-
+#include "game.h"//temporary
 
 extern CHARACTER entities[];
 
@@ -134,6 +134,21 @@ void inline s_render_entity(CHARACTER *player)
 
      SDL_SetRenderDrawColor(prog.renderer, 255, 255, 255, 255);
      SDL_RenderDrawRect(prog.renderer, &rect);
+
+     //attack hit box
+     ATK_INFO *ptr_atk = s_game_get_current_attack(player);
+             rect.x = player->x;
+             rect.y = ptr_atk->y + player->y;
+             rect.w = ptr_atk->width;
+             rect.h = ptr_atk->height;
+            if(player->flipped){
+                rect.x -=  -player->width + ptr_atk->width + ptr_atk->x;
+            }else{
+                rect.x += ptr_atk->x;
+            }
+             SDL_SetRenderDrawColor(prog.renderer, 255, 0, 5, 255);
+             SDL_RenderDrawRect(prog.renderer, &rect);
+     //}
 
 }
 

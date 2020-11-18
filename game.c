@@ -59,13 +59,16 @@ inline void s_game_player_fsm(CHARACTER *player)
             player->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
             if(movement_direction){
                  s_game_shift_player_state(player, WALK);
+
             }
             if(player->movement_control[UP]){
-
                     player->dy -= DEFAULT_JMPSPD * prog.delta_time;
                     player->grounded = false;
                     player->can_attack = true;
                     s_game_shift_player_state(player, JUMP);
+            }
+            if(!(player->grounded)){
+                s_game_shift_player_state(player, FALL);
             }
         break;
 
@@ -143,18 +146,26 @@ inline void s_game_process_attacks(CHARACTER *player)
             ptr_attack = s_game_get_current_attack(player);
 
             //construct hit bookx
-            attack_x = player->x + ptr_attack->x;
+            attack_x = player->x;
             attack_y = player->y + ptr_attack->y;
             attack_w = ptr_attack->width;
             attack_h = ptr_attack->height;
             if(player->flipped){
-                attack_x -= player->width;
+                attack_x -= -player->width + attack_w + ptr_attack->x;
+            }else{
+                attack_x += ptr_attack->x;
             }
-            if(fabs(player->x - player->enemy->x) < 100){
+
+            //if(fabs(player->x - player->enemy->x) < 100){
+            if(aab_collision(attack_x, attack_y,
+                            player->enemy->x, player->enemy->y,
+                            attack_w, attack_h,
+                            player->enemy->width, player->enemy->height)){
 
                 //appply attack stats
                 player->enemy->hp -= ptr_attack->damage;
                 player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1);
+                player->enemy->dy = ptr_attack->target_dy;
 
                 player->enemy->can_attack = false;
                 s_game_cache_state(player->enemy);

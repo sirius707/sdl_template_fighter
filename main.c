@@ -109,7 +109,7 @@ int main( int argc, char* args[] )
         //attacks
         animations[0].attacks[0].damage = 2;
         animations[0].attacks[0].target_dx = 2;
-        animations[0].attacks[0].x = 10;
+        animations[0].attacks[0].x = 40;
         animations[0].attacks[0].y = 10;
         animations[0].attacks[0].width = 10;
         animations[0].attacks[0].height = 10;
@@ -173,9 +173,9 @@ int main( int argc, char* args[] )
         //attacks
         animations[1].attacks[0].damage = 2;
         animations[1].attacks[0].target_dx = 3;
-        animations[1].attacks[0].x = 10;
-        animations[1].attacks[0].y = 10;
-        animations[1].attacks[0].width = 10;
+        animations[1].attacks[0].x = 20;
+        animations[1].attacks[0].y = 0;
+        animations[1].attacks[0].width = 400;
         animations[1].attacks[0].height = 10;
     }
 
@@ -247,9 +247,10 @@ int main( int argc, char* args[] )
         s_render_total();
 
         prog.delta_time = (double)((NOW - LAST)/ (double)SDL_GetPerformanceFrequency() );//temporary until a fix is found
+        if(prog.delta_time > 1.0/prog.fps)prog.delta_time = 1.0/prog.fps;
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        printf("%03d %03d \r", entities[0].hp,  entities[1].hp);
+        printf("%03d %03d \r", entities[0].flipped,  entities[1].flipped);
 
     }
 
