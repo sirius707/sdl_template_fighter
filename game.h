@@ -19,5 +19,6 @@ void s_game_animate(CHARACTER *player);
 void s_game_process_attacks(CHARACTER *player);
 void s_game_shift_player_state(CHARACTER *player, PLAYER_STATE state);//change state and animation
 void s_game_cache_state(CHARACTER *player);
+ATK_INFO *s_game_get_current_attack(CHARACTER *player);
 
 #endif

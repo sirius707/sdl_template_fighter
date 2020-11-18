@@ -132,16 +132,35 @@ inline void s_game_player_fsm(CHARACTER *player)
 
 inline void s_game_process_attacks(CHARACTER *player)
 {
-        if(player->is_attacking){
-            player->is_attacking = false;
+        //
+        //make code here for when both player and enemy are attacking at the same time
+        //
 
+        if(player->is_attacking){
+            ATK_INFO *ptr_attack;
+            float attack_x, attack_y, attack_w, attack_h;//hit box
+
+            ptr_attack = s_game_get_current_attack(player);
+
+            //construct hit bookx
+            attack_x = player->x + ptr_attack->x;
+            attack_y = player->y + ptr_attack->y;
+            attack_w = ptr_attack->width;
+            attack_h = ptr_attack->height;
+            if(player->flipped){
+                attack_x -= player->width;
+            }
             if(fabs(player->x - player->enemy->x) < 100){
-                s_game_cache_state(player->enemy);
-                //assert(player->enemy->cache_state != GET_ATTACKED);
-                puts("pew");
+
+                //appply attack stats
+                player->enemy->hp -= ptr_attack->damage;
+                player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1);
+
                 player->enemy->can_attack = false;
+                s_game_cache_state(player->enemy);
                 s_game_shift_player_state(player->enemy, GET_ATTACKED);
             }
+            player->is_attacking = false;
         }
 
 }
@@ -228,3 +247,18 @@ inline void s_game_cache_state(CHARACTER *player)//pushes a player state into ca
 }
 
 
+ATK_INFO *s_game_get_current_attack(CHARACTER *player)
+{
+    ANIMATION *ptr_animation;
+    uint16_t sequence;
+    uint16_t frame;
+    uint8_t attack_index;
+
+    ptr_animation = player->ptr_animation;
+    sequence = player->current_squence;
+    frame = player->current_frame;
+
+    attack_index = ptr_animation->frames[sequence][frame].data - 1;
+
+    return &(ptr_animation->attacks[attack_index]);
+}

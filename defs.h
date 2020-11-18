@@ -7,7 +7,7 @@
 #define MAX_KEYBOARD_KEYS 350
 
 #define NUMBER_OF_PLAYERS 2
-
+#define NUMBER_OF_ATTACKS_PER_ANIMATION 4
 #define NUMBER_OF_ANIMATIONS 3
 
 #define ANIMATION_PLAY_RATE 10.0 //how many animation frames to play per second

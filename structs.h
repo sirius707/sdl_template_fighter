@@ -15,7 +15,15 @@ typedef struct PROGRAM{
 
 
 typedef struct{
-    uint16_t data;
+    //hitbox
+    float x, y;
+    float width, height;
+
+    float target_dx;//displace victim
+    float target_dy;//displace victim
+
+    uint8_t damage;
+
     ATTACK_TYPE type;
 }ATK_INFO;//todo:create attack queue
 
@@ -38,13 +46,15 @@ typedef struct ANIMATION{
     int8_t sprite_y_displacement;
     uint32_t sprite_scale;//visual scale of the sprite
 
+    ATK_INFO attacks[NUMBER_OF_ATTACKS_PER_ANIMATION];
+
     SDL_Texture *sprite_sheet;
 }ANIMATION;
 
 
 typedef struct CHARACTER{
-   float x;float width;//logical width, used in physics
-   float y;float height;//logical height, used in physics
+   float x;uint16_t width;//logical width, used in physics
+   float y;uint16_t height;//logical height, used in physics
    float vel_x;float dx;
    float vel_y;float dy;
 

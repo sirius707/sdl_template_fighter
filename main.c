@@ -105,6 +105,15 @@ int main( int argc, char* args[] )
 
         //fall frames
         animations[0].frames[1][0].x = 96*9;animations[0].frames[1][0].y = 90*1;animations[0].frames[1][0].active = 1;
+
+        //attacks
+        animations[0].attacks[0].damage = 2;
+        animations[0].attacks[0].target_dx = 2;
+        animations[0].attacks[0].x = 10;
+        animations[0].attacks[0].y = 10;
+        animations[0].attacks[0].width = 10;
+        animations[0].attacks[0].height = 10;
+
     }
 
     temp_surface = SDL_LoadBMP("data\\jin.bmp");
@@ -161,6 +170,13 @@ int main( int argc, char* args[] )
         animations[1].frames[4][3].x = 159*1;animations[1].frames[4][3].y = 169*8;animations[1].frames[4][3].active = 1;
         animations[1].frames[4][4].x = 159*2;animations[1].frames[4][4].y = 169*8;animations[1].frames[4][4].active = 1;
 
+        //attacks
+        animations[1].attacks[0].damage = 2;
+        animations[1].attacks[0].target_dx = 3;
+        animations[1].attacks[0].x = 10;
+        animations[1].attacks[0].y = 10;
+        animations[1].attacks[0].width = 10;
+        animations[1].attacks[0].height = 10;
     }
 
     temp_surface = SDL_LoadBMP("data\\genkai.bmp");
@@ -233,8 +249,10 @@ int main( int argc, char* args[] )
         prog.delta_time = (double)((NOW - LAST)/ (double)SDL_GetPerformanceFrequency() );//temporary until a fix is found
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        //printf("%03d %03d \r", entities[0].current_squence,  entities[1].current_squence);
+        printf("%03d %03d \r", entities[0].hp,  entities[1].hp);
+
     }
+
 
     deinit();
 	return 0;
