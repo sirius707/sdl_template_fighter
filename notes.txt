@@ -15,3 +15,6 @@ as well as logical width and height vb
 executing attacks needs to be synchronized with animation
 
 make distinction between can attack and is attacking
+
+processing attacks should happen with animation steps only
+otherwise you might have 1 attack acting as multiple

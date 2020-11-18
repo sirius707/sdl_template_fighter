@@ -349,7 +349,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1605634132 source:f:\blocks\sdl_template\main.c
+1605659029 source:f:\blocks\sdl_template\main.c
 	"common.h"
 	"init.h"
 	"render.h"
@@ -394,10 +394,10 @@
 1604331618 f:\blocks\sdl_template\input.h
 	"common.h"
 
-1605635436 source:f:\blocks\sdl_template\game.c
+1605659375 source:f:\blocks\sdl_template\game.c
 	"game.h"
 
-1605634132 f:\blocks\sdl_template\game.h
+1605659498 f:\blocks\sdl_template\game.h
 	"common.h"
 
 1605527028 source:f:\blocks\sdl_template\physics.c

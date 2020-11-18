@@ -28,7 +28,7 @@ int main( int argc, char* args[] )
     entities[0].can_attack = true;
     entities[0].flipped = false;
     entities[0].enemy = &entities[1];
-    entities[0].ptr_animation = &animations[1];
+    entities[0].ptr_animation = &animations[0];
     entities[0].current_squence = 1;//fall
 
     entities[1].x = 450;
@@ -41,7 +41,7 @@ int main( int argc, char* args[] )
     entities[1].can_attack = true;
     entities[1].flipped = true;
     entities[1].enemy = &entities[0];
-    entities[1].ptr_animation = &animations[0];
+    entities[1].ptr_animation = &animations[1];
     entities[1].current_squence = 1;//fall
 
     strcpy(animations[0].name, "stephan");//what does stephan mean
@@ -64,6 +64,8 @@ int main( int argc, char* args[] )
         animations[0].default_seqs[FALL] = 1;
         animations[0].default_seqs[WALK] = 2;
         animations[0].default_seqs[JUMP] = 3;
+        animations[0].default_seqs[ATTACK] = 4;
+        animations[0].default_seqs[GET_ATTACKED] = 5;
 
         //idle frames
         animations[0].frames[0][0].x = 0;animations[0].frames[0][0].y = 0;animations[0].frames[0][0].active = 1;
@@ -80,12 +82,26 @@ int main( int argc, char* args[] )
         animations[0].frames[2][5].x = 96*8;animations[0].frames[2][5].y = 0;animations[0].frames[2][5].active = 1;
         animations[0].frames[2][6].x = 96*9;animations[0].frames[2][6].y = 0;animations[0].frames[2][6].active = 1;
 
+
         //jump frames
         animations[0].frames[3][0].x = 96*7;animations[0].frames[3][0].y = 96*1;animations[0].frames[3][0].active = 1;
         animations[0].frames[3][1].x = 96*8;animations[0].frames[3][1].y = 96*1;animations[0].frames[3][1].active = 1;
 
+        //get hit
+        animations[0].frames[5][0].x = 96*4;animations[0].frames[5][0].y = 96*1;animations[0].frames[5][0].active = 1;
+        animations[0].frames[5][1].x = 96*4;animations[0].frames[5][1].y = 96*1;animations[0].frames[5][1].active = 1;
+        animations[0].frames[5][2].x = 96*4;animations[0].frames[5][2].y = 96*1;animations[0].frames[5][2].active = 1;
+        animations[0].frames[5][3].x = 96*4;animations[0].frames[5][3].y = 96*1;animations[0].frames[5][3].active = 1;
+
+        //attack frames
+        animations[0].frames[4][0].x = 96*0;animations[0].frames[4][0].y = 90*8;animations[0].frames[4][0].active = 1;
+        animations[0].frames[4][1].x = 96*1;animations[0].frames[4][1].y = 90*8;animations[0].frames[4][1].active = 1;animations[0].frames[4][1].data = 1;
+        animations[0].frames[4][2].x = 96*2;animations[0].frames[4][2].y = 90*8;animations[0].frames[4][2].active = 1;
+        animations[0].frames[4][3].x = 96*3;animations[0].frames[4][3].y = 90*8;animations[0].frames[4][3].active = 1;
+        animations[0].frames[4][4].x = 96*4;animations[0].frames[4][4].y = 90*8;animations[0].frames[4][4].active = 1;
+
         //fall frames
-        animations[0].frames[1][0].x = 96*9;animations[0].frames[1][0].y = 96*1;animations[0].frames[1][0].active = 1;
+        animations[0].frames[1][0].x = 96*9;animations[0].frames[1][0].y = 90*1;animations[0].frames[1][0].active = 1;
     }
 
     temp_surface = SDL_LoadBMP("data\\jin.bmp");
@@ -107,6 +123,7 @@ int main( int argc, char* args[] )
         animations[1].default_seqs[WALK] = 2;
         animations[1].default_seqs[JUMP] = 3;
         animations[1].default_seqs[ATTACK] = 4;
+        animations[1].default_seqs[GET_ATTACKED] = 5;
 
         //idle frames
         animations[1].frames[0][0].x = 0;animations[1].frames[0][0].y = 0;animations[1].frames[0][0].active = 1;
@@ -128,11 +145,17 @@ int main( int argc, char* args[] )
         //fall frames
         animations[1].frames[1][0].x = 159*11;animations[1].frames[1][0].y = 0;animations[1].frames[1][0].active = 1;
 
+        //get attacked
+        animations[1].frames[5][0].x = 159*0;animations[1].frames[5][0].y = 169*2;animations[1].frames[5][0].active = 1;
+        animations[1].frames[5][1].x = 159*0;animations[1].frames[5][1].y = 169*2;animations[1].frames[5][1].active = 1;
+        animations[1].frames[5][2].x = 159*1;animations[1].frames[5][2].y = 169*2;animations[1].frames[5][2].active = 1;
+        animations[1].frames[5][3].x = 159*1;animations[1].frames[5][3].y = 169*2;animations[1].frames[5][3].active = 1;
+
         //attack frames
         animations[1].frames[4][0].x = 159;animations[1].frames[4][0].y = 0;animations[1].frames[4][0].active = 1;
-        animations[1].frames[4][1].x = 159*0;animations[1].frames[4][1].y = 169*8;animations[1].frames[4][1].active = 1;
+        animations[1].frames[4][1].x = 159*0;animations[1].frames[4][1].y = 169*8;animations[1].frames[4][1].active = 1;animations[1].frames[4][1].data = 1;
         animations[1].frames[4][2].x = 159*1;animations[1].frames[4][2].y = 169*8;animations[1].frames[4][2].active = 1;
-        animations[1].frames[4][3].x = 159*1;animations[1].frames[4][3].y = 169*8;animations[1].frames[4][3].active = 1;animations[1].frames[4][3].data = 1;
+        animations[1].frames[4][3].x = 159*1;animations[1].frames[4][3].y = 169*8;animations[1].frames[4][3].active = 1;
         animations[1].frames[4][4].x = 159*2;animations[1].frames[4][4].y = 169*8;animations[1].frames[4][4].active = 1;
 
     }
@@ -207,9 +230,7 @@ int main( int argc, char* args[] )
         prog.delta_time = (double)((NOW - LAST)/ (double)SDL_GetPerformanceFrequency() );//temporary until a fix is found
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        //printf("action a:%d, %d state=%d vel_y = %f, pos_y = %f, dt = %f\r", entities[0].action_control[ACTION_A], entities[0].grounded, entities[0].enum_player_state, entities[0].vel_y, entities[0].y, prog.delta_time);
-       // printf("%03d %03d \r", entities[0].current_frame,  entities[0].current_squence);
-
+        //printf("%03d %03d \r", entities[0].current_squence,  entities[1].current_squence);
     }
 
     deinit();
