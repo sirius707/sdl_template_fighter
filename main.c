@@ -17,6 +17,7 @@ int main( int argc, char* args[] )
     memset(animations, 0, sizeof(ANIMATION)*NUMBER_OF_ANIMATIONS);
 
     init();
+    s_render_init();
 
     entities[0].x = 100;
     entities[0].y = 20;
@@ -43,6 +44,8 @@ int main( int argc, char* args[] )
     entities[1].enemy = &entities[0];
     entities[1].ptr_animation = &animations[1];
     entities[1].current_squence = 1;//fall
+
+    foreground_entity = &entities[0];
 
     strcpy(animations[0].name, "stephan");//what does stephan mean
     SDL_Surface *temp_surface = SDL_LoadBMP("data\\hiei.bmp");

@@ -11,6 +11,8 @@ void deinit();
 void sdl_init();
 void sdl_deinit();
 
+void animation_deinit();
+
 #endif // INIT_H_INCLUDED
 
 

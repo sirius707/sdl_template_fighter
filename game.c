@@ -50,10 +50,12 @@ inline void s_game_player_fsm(CHARACTER *player)
     }
 
     if(player->grounded)player->flipped = player->enemy->x < player->x;//flip player if facing wrong direction
+    player->render_foreground = true;
 
     switch(player->enum_player_state){
 
         case IDLE:
+            player->render_foreground = false;
             player->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
             if(movement_direction){
                  s_game_shift_player_state(player, WALK);
@@ -95,6 +97,7 @@ inline void s_game_player_fsm(CHARACTER *player)
         break;
 
         case FALL:
+            player->render_foreground = false;
             if(player->grounded){
                 //player->can_attack = true;
                 s_game_shift_player_state(player, IDLE);
@@ -111,6 +114,7 @@ inline void s_game_player_fsm(CHARACTER *player)
         break;
 
         case GET_ATTACKED:
+            player->render_foreground = false;
             if(player->animation_end){
                 player->animation_end = false;
                 player->can_attack = true;
@@ -122,6 +126,8 @@ inline void s_game_player_fsm(CHARACTER *player)
             fprintf(stderr, "unkown state\n");
         break;
     }
+
+    if(player->render_foreground)foreground_entity = player;
 }
 
 inline void s_game_process_attacks(CHARACTER *player)
@@ -220,4 +226,5 @@ inline void s_game_cache_state(CHARACTER *player)//pushes a player state into ca
 
     }
 }
+
 

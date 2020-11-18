@@ -57,6 +57,7 @@ typedef struct CHARACTER{
    bool animation_end;//only true when current frame goes beyond the last frame, i.e when current frame.active = false
    uint8_t frame_counter;//temporary frame counter that will be used to simulate animation, until we implement animation
    float animation_elapsed_time;//play animation if this is greater than 1/ANIMATION_PLAY_RATE, increment with delta time each logical frame.
+   bool render_foreground;
 
    PLAYER_STATE enum_player_state;
    PLAYER_STATE cache_state;//temporary state that will be use to store current state if we shift to attack state, attack state is responsible for returning us to the cached state
@@ -73,5 +74,5 @@ typedef struct CHARACTER{
 
 
 PROGRAM prog;
-CHARACTER entities[NUMBER_OF_PLAYERS];
+CHARACTER entities[NUMBER_OF_PLAYERS];CHARACTER *foreground_entity;
 ANIMATION animations[NUMBER_OF_ANIMATIONS];

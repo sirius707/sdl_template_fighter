@@ -11,6 +11,7 @@ void init()
 void deinit()
 {
     sdl_deinit();
+    animation_deinit();
 }
 
 void sdl_init()
@@ -45,6 +46,13 @@ void sdl_init()
 		printf("Failed to create renderer: %s\n", SDL_GetError());
 		exit(1);
 	}
+}
+
+void animation_deinit()
+{
+    for(int i = 0; i < NUMBER_OF_ANIMATIONS; i++){
+        SDL_DestroyTexture(animations[i].sprite_sheet);
+    }
 }
 
 void sdl_deinit()
