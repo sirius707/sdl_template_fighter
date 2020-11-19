@@ -1,0 +1,8 @@
+get hit box of current attack
+does it collide with player?
+	if yes
+		get attack info
+		apply attack
+		halt both players
+disable is attacking
+

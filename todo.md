@@ -20,10 +20,16 @@ fix delta time erratic behavior when jumping
 
 goto state function
 
-animation, attacks, combo system, animation frame rate, sounds
+done:
+animation, attacks,
+animation frame rate,
+
+todo:
+combo system,  sounds
 reduce speed when walking backwards, load from files, delay on hit
 attack after effect, boom
 transition table
+make different hits produce different animations
 
 multiple renderers for layers
 

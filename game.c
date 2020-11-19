@@ -38,7 +38,10 @@ inline void s_game_animate(CHARACTER *player)
 inline void s_game_player_fsm(CHARACTER *player)
 {
     int movement_direction = 0; //1 or -1 or 0
+    bool forward = false;//true if player is moving forward, whether flipped or not
     movement_direction = player->movement_control[RIGHT] + (-player->movement_control[LEFT]);
+
+    forward = (!player->flipped && movement_direction > 0) || (player->flipped && movement_direction < 0);
 
     if(player->can_attack){
         if(player->action_control[ACTION_A]){
@@ -73,7 +76,10 @@ inline void s_game_player_fsm(CHARACTER *player)
         break;
 
         case WALK:
+            player->render_foreground = false;
             player->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
+            if(!forward)player->dx *= MOVEMENT_DIVIDER;//slow down if walking back
+
             if(!movement_direction){
                 s_game_shift_player_state(player, IDLE);
             }
@@ -107,6 +113,15 @@ inline void s_game_player_fsm(CHARACTER *player)
             }
         break;
 
+        case BLOCK:
+            player->render_foreground = false;
+            if(player->animation_end){
+                player->animation_end = false;
+                player->can_attack = true;
+                s_game_shift_player_state(player, player->cache_state);
+            }
+        break;
+
         case ATTACK:
             if(player->grounded)player->dx = 0;
             if(player->animation_end){
@@ -117,6 +132,7 @@ inline void s_game_player_fsm(CHARACTER *player)
         break;
 
         case GET_ATTACKED:
+            player->flipped = player->enemy->x < player->x;
             player->render_foreground = false;
             if(player->animation_end){
                 player->animation_end = false;
@@ -162,14 +178,30 @@ inline void s_game_process_attacks(CHARACTER *player)
                             attack_w, attack_h,
                             player->enemy->width, player->enemy->height)){
 
-                //appply attack stats
-                player->enemy->hp -= ptr_attack->damage;
-                player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1);
-                player->enemy->dy = ptr_attack->target_dy;
 
-                player->enemy->can_attack = false;
-                s_game_cache_state(player->enemy);
-                s_game_shift_player_state(player->enemy, GET_ATTACKED);
+                switch(player->enemy->enum_player_state){
+                    case IDLE:
+                    case BLOCK:
+                    //case walk_back: implement later
+                            player->enemy->can_attack = false;
+                            s_game_cache_state(player->enemy);
+                            s_game_shift_player_state(player->enemy, BLOCK);
+                            player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1) * 0.25;//halved because blocking
+                            player->enemy->dy = ptr_attack->target_dy * 0.25;
+
+                    break;
+
+                    default:
+                            //appply attack stats
+                            player->enemy->hp -= ptr_attack->damage;
+                            player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1);
+                            player->enemy->dy = ptr_attack->target_dy;
+
+                            player->enemy->can_attack = false;
+                            s_game_cache_state(player->enemy);
+                            s_game_shift_player_state(player->enemy, GET_ATTACKED);
+
+                }
             }
             player->is_attacking = false;
         }

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1605719259 source:f:\blocks\sdl_template\my_sdl_util.c
+1605720250 source:f:\blocks\sdl_template\my_sdl_util.c
 	"my_sdl_util.h"
 	<assert.h>
 
@@ -350,7 +350,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1605717389 source:f:\blocks\sdl_template\main.c
+1605808371 source:f:\blocks\sdl_template\main.c
 	"common.h"
 	"init.h"
 	"render.h"
@@ -371,7 +371,7 @@
 	"defs.h"
 	"structs.h"
 
-1605709506 f:\blocks\sdl_template\defs.h
+1605815908 f:\blocks\sdl_template\defs.h
 
 1605712593 f:\blocks\sdl_template\structs.h
 	"common.h"
@@ -396,7 +396,7 @@
 1604331618 f:\blocks\sdl_template\input.h
 	"common.h"
 
-1605718925 source:f:\blocks\sdl_template\game.c
+1605815845 source:f:\blocks\sdl_template\game.c
 	"game.h"
 
 1605712253 f:\blocks\sdl_template\game.h
