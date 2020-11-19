@@ -13,11 +13,14 @@ void s_game_player_logic(void)
 
 
         entities[i].animation_elapsed_time += prog.delta_time;
+        if(entities[i].processing_delay > 0)entities[i].processing_delay -= prog.delta_time;
     }
 }
 
 inline void s_game_animate(CHARACTER *player)
 {
+    if(player->processing_delay > 0) return;//don't process
+
     if(player->animation_elapsed_time >= 1/ANIMATION_PLAY_RATE){
         player->animation_elapsed_time = 0.0;
         //if at went beyond last frame loop
@@ -37,6 +40,8 @@ inline void s_game_animate(CHARACTER *player)
 
 inline void s_game_player_fsm(CHARACTER *player)
 {
+    if(player->processing_delay > 0)return;
+
     int movement_direction = 0; //1 or -1 or 0
     bool forward = false;//true if player is moving forward, whether flipped or not
     movement_direction = player->movement_control[RIGHT] + (-player->movement_control[LEFT]);
@@ -62,7 +67,6 @@ inline void s_game_player_fsm(CHARACTER *player)
             player->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
             if(movement_direction){
                  s_game_shift_player_state(player, WALK);
-
             }
             if(player->movement_control[UP]){
                     player->dy -= DEFAULT_JMPSPD * prog.delta_time;
@@ -115,6 +119,9 @@ inline void s_game_player_fsm(CHARACTER *player)
 
         case BLOCK:
             player->render_foreground = false;
+            if(forward){//id player moves forward, whether flipped or not, we want to keep blocking if player presses back
+                 s_game_shift_player_state(player, WALK);
+            }
             if(player->animation_end){
                 player->animation_end = false;
                 player->can_attack = true;
@@ -151,6 +158,7 @@ inline void s_game_player_fsm(CHARACTER *player)
 
 inline void s_game_process_attacks(CHARACTER *player)
 {
+        if(player->processing_delay > 0)return;
         //
         //make code here for when both player and enemy are attacking at the same time
         //
@@ -178,6 +186,8 @@ inline void s_game_process_attacks(CHARACTER *player)
                             attack_w, attack_h,
                             player->enemy->width, player->enemy->height)){
 
+                player->processing_delay = ON_HIT_DELAY;
+                player->enemy->processing_delay = ON_HIT_DELAY;
 
                 switch(player->enemy->enum_player_state){
                     case IDLE:

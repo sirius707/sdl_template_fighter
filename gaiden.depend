@@ -371,9 +371,9 @@
 	"defs.h"
 	"structs.h"
 
-1605815908 f:\blocks\sdl_template\defs.h
+1605818390 f:\blocks\sdl_template\defs.h
 
-1605712593 f:\blocks\sdl_template\structs.h
+1605817544 f:\blocks\sdl_template\structs.h
 	"common.h"
 
 1605700544 source:f:\blocks\sdl_template\init.c
@@ -396,13 +396,13 @@
 1604331618 f:\blocks\sdl_template\input.h
 	"common.h"
 
-1605815845 source:f:\blocks\sdl_template\game.c
+1605821853 source:f:\blocks\sdl_template\game.c
 	"game.h"
 
 1605712253 f:\blocks\sdl_template\game.h
 	"common.h"
 
-1605713939 source:f:\blocks\sdl_template\physics.c
+1605817913 source:f:\blocks\sdl_template\physics.c
 	"physics.h"
 
 1605296324 f:\blocks\sdl_template\physics.h

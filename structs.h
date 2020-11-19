@@ -58,6 +58,8 @@ typedef struct CHARACTER{
    float vel_x;float dx;
    float vel_y;float dy;
 
+   float processing_delay;//if this is not 0 certain processes will not happen to the player, physics, fsm and attacks
+
    bool flipped;
    struct CHARACTER *enemy;//we need this so we can flip the sprite to "look at the enemy"
 

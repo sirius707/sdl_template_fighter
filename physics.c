@@ -8,6 +8,8 @@ void s_physics(void)
     //entities
     for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
 
+        if(entities[i].processing_delay > 0)continue;//skip applying physics if player has on hit delay
+
         entities[i].grounded = false;
         //gravity
         //entities[i].vel_y += G * prog.delta_time;
