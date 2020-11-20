@@ -18,3 +18,25 @@ make distinction between can attack and is attacking
 
 processing attacks should happen with animation steps only
 otherwise you might have 1 attack acting as multiple
+
+seems we need to make a separate set_animation function 
+similar to shift states, it also uses states (some of which will be unimplemented) but it only changes animation not player state
+we need this to simulate things like jumping forward and backward withouth implementing a new state, which is effectively just jumping but with separate animation
+the input will also be a destination state. we set it in the default_animations table
+so default_animation[BACK_JUMP] = animatin sequence index
+
+maybe we can avoid the scenario above if we combine similar states in the fsm
+for example: JUMP, JUMP FORWARD, JUMP BACK, are effectively the same state but with different animations
+so we can do this
+JUMP:
+JUMP_BACK:
+JUMP_FORWARD:
+	apply jump
+	break;
+WALK:
+WALK_BACK:
+IDLE:
+	apply things
+	break;
+
+entities are sticky when they have different widths, problem in phyiscs

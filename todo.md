@@ -30,6 +30,7 @@ reduce speed when walking backwards, load from files, delay on hit
 attack after effect, boom
 transition table
 make different hits produce different animations
+set animation function
 
 multiple renderers for layers
 

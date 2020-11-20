@@ -66,7 +66,7 @@ inline void s_game_player_fsm(CHARACTER *player)
             player->render_foreground = false;
             player->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
             if(movement_direction){
-                 s_game_shift_player_state(player, WALK);
+                 s_game_shift_player_state(player, forward? WALK : WALK_BACK );
             }
             if(player->movement_control[UP]){
                     player->dy -= DEFAULT_JMPSPD * prog.delta_time;
@@ -80,6 +80,7 @@ inline void s_game_player_fsm(CHARACTER *player)
         break;
 
         case WALK:
+        case WALK_BACK:
             player->render_foreground = false;
             player->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
             if(!forward)player->dx *= MOVEMENT_DIVIDER;//slow down if walking back
@@ -91,12 +92,13 @@ inline void s_game_player_fsm(CHARACTER *player)
 
                     player->dy -= DEFAULT_JMPSPD * prog.delta_time;
                     player->grounded = false;
-                    //player->can_attack = true;
+                    player->can_attack = true;
                     s_game_shift_player_state(player, JUMP);
             }
         break;
 
         case JUMP:
+        case JUMP_BACK:
             if(player->y >= GROUND_HEIGHT){//if player reached max height
                 player->dy = 0;
             }
@@ -119,7 +121,7 @@ inline void s_game_player_fsm(CHARACTER *player)
 
         case BLOCK:
             player->render_foreground = false;
-            if(forward){//id player moves forward, whether flipped or not, we want to keep blocking if player presses back
+            if(forward){//id player moves forward, whether flipped or not, we want to keep blocking if player presses back,
                  s_game_shift_player_state(player, WALK);
             }
             if(player->animation_end){
@@ -192,12 +194,14 @@ inline void s_game_process_attacks(CHARACTER *player)
                 switch(player->enemy->enum_player_state){
                     case IDLE:
                     case BLOCK:
+                    case WALK_BACK:
+                    case JUMP_BACK:
                     //case walk_back: implement later
                             player->enemy->can_attack = false;
                             s_game_cache_state(player->enemy);
                             s_game_shift_player_state(player->enemy, BLOCK);
-                            player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1) * 0.25;//halved because blocking
-                            player->enemy->dy = ptr_attack->target_dy * 0.25;
+                            player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1) * 1.3;//increased because blocking
+                            player->enemy->dy = ptr_attack->target_dy;
 
                     break;
 

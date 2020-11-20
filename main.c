@@ -133,10 +133,12 @@ int main( int argc, char* args[] )
         animations[1].default_seqs[IDLE] = 0;
         animations[1].default_seqs[FALL] = 1;
         animations[1].default_seqs[WALK] = 2;
+        animations[1].default_seqs[WALK_BACK] = 7;
         animations[1].default_seqs[JUMP] = 3;
         animations[1].default_seqs[ATTACK] = 4;
         animations[1].default_seqs[GET_ATTACKED] = 5;
         animations[1].default_seqs[BLOCK] = 6;
+        animations[1].default_seqs[JUMP_BACK] = 3;
 
         //idle frames
         animations[1].frames[0][0].x = 0;animations[1].frames[0][0].y = 0;animations[1].frames[0][0].active = 1;
@@ -151,6 +153,14 @@ int main( int argc, char* args[] )
         animations[1].frames[2][3].x = 159*7;animations[1].frames[2][3].y = 0;animations[1].frames[2][3].active = 1;
         animations[1].frames[2][4].x = 159*8;animations[1].frames[2][4].y = 0;animations[1].frames[2][4].active = 1;
         animations[1].frames[2][5].x = 159*9;animations[1].frames[2][5].y = 0;animations[1].frames[2][5].active = 1;
+
+        //walk back frames
+        animations[1].frames[7][5].x = 159*4;animations[1].frames[7][5].y = 0;animations[1].frames[7][5].active = 1;
+        animations[1].frames[7][4].x = 159*5;animations[1].frames[7][4].y = 0;animations[1].frames[7][4].active = 1;
+        animations[1].frames[7][3].x = 159*6;animations[1].frames[7][3].y = 0;animations[1].frames[7][3].active = 1;
+        animations[1].frames[7][2].x = 159*7;animations[1].frames[7][2].y = 0;animations[1].frames[7][2].active = 1;
+        animations[1].frames[7][1].x = 159*8;animations[1].frames[7][1].y = 0;animations[1].frames[7][1].active = 1;
+        animations[1].frames[7][0].x = 159*9;animations[1].frames[7][0].y = 0;animations[1].frames[7][0].active = 1;
 
         //jump frames
         animations[1].frames[3][0].x = 159*10;animations[1].frames[3][0].y = 0;animations[1].frames[3][0].active = 1;
@@ -207,6 +217,8 @@ int main( int argc, char* args[] )
         animations[2].default_seqs[ATTACK] = 4;
         animations[2].default_seqs[GET_ATTACKED] = 5;
         animations[2].default_seqs[BLOCK] = 6;
+        animations[2].default_seqs[WALK_BACK] = 7;
+        animations[2].default_seqs[JUMP_BACK] = 3;
 
         //idle frames
         animations[2].frames[0][0].x = 0;animations[2].frames[0][0].y = 0;animations[2].frames[0][0].active = 1;
@@ -216,6 +228,12 @@ int main( int argc, char* args[] )
         animations[2].frames[2][1].x = 80*5;animations[2].frames[2][1].y = 0;animations[2].frames[2][1].active = 1;
         animations[2].frames[2][2].x = 80*6;animations[2].frames[2][2].y = 0;animations[2].frames[2][2].active = 1;
         animations[2].frames[2][3].x = 80*7;animations[2].frames[2][3].y = 0;animations[2].frames[2][3].active = 1;
+
+        //walk back
+        animations[2].frames[7][3].x = 80*4;animations[2].frames[7][3].y = 0;animations[2].frames[7][3].active = 1;
+        animations[2].frames[7][2].x = 80*5;animations[2].frames[7][2].y = 0;animations[2].frames[7][2].active = 1;
+        animations[2].frames[7][1].x = 80*6;animations[2].frames[7][1].y = 0;animations[2].frames[7][1].active = 1;
+        animations[2].frames[7][0].x = 80*7;animations[2].frames[7][0].y = 0;animations[2].frames[7][0].active = 1;
 
         //jump frames
         animations[2].frames[3][0].x = 80*2;animations[2].frames[3][0].y = 80*6;animations[2].frames[3][0].active = 1;
