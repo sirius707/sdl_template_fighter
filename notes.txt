@@ -40,3 +40,15 @@ IDLE:
 	break;
 
 entities are sticky when they have different widths, problem in phyiscs
+
+now the shift state function only shifts to default state animation if the player isn't in that state, 
+but what if we desire to repeat a certain state from within itself, like parrying? then we can simply reset the player state by hand
+then call shift state, like so:
+player->enum_currante_state = 0;
+shift_state(player, target_state)
+
+idea: if your low attacked is parried you can't parry in time, other player will fuck you. but if you use a risky heavy attack and get parried. you will have a chance to parry the player before they 
+finish their counter attack
+
+input doesn't seem very responsive during parries and on hit delays.
+maybe we need to acquire input in a function and clear action keys in another function

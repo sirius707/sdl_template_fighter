@@ -139,6 +139,7 @@ int main( int argc, char* args[] )
         animations[1].default_seqs[GET_ATTACKED] = 5;
         animations[1].default_seqs[BLOCK] = 6;
         animations[1].default_seqs[JUMP_BACK] = 3;
+        animations[1].default_seqs[PARRY] = 6;
 
         //idle frames
         animations[1].frames[0][0].x = 0;animations[1].frames[0][0].y = 0;animations[1].frames[0][0].active = 1;
@@ -219,6 +220,7 @@ int main( int argc, char* args[] )
         animations[2].default_seqs[BLOCK] = 6;
         animations[2].default_seqs[WALK_BACK] = 7;
         animations[2].default_seqs[JUMP_BACK] = 3;
+        animations[2].default_seqs[PARRY] = 6;
 
         //idle frames
         animations[2].frames[0][0].x = 0;animations[2].frames[0][0].y = 0;animations[2].frames[0][0].active = 1;
@@ -236,7 +238,7 @@ int main( int argc, char* args[] )
         animations[2].frames[7][0].x = 80*7;animations[2].frames[7][0].y = 0;animations[2].frames[7][0].active = 1;
 
         //jump frames
-        animations[2].frames[3][0].x = 80*2;animations[2].frames[3][0].y = 80*6;animations[2].frames[3][0].active = 1;
+        animations[2].frames[3][0].x = 80*1;animations[2].frames[3][0].y = 80*6;animations[2].frames[3][0].active = 1;
 
         //fall frames
         animations[2].frames[1][0].x = 160;animations[2].frames[1][0].y = 320;animations[2].frames[1][0].active = 1;
@@ -261,7 +263,7 @@ int main( int argc, char* args[] )
         animations[2].attacks[0].target_dx = 1.3;
         animations[2].attacks[0].x = 20;
         animations[2].attacks[0].y = 0;
-        animations[2].attacks[0].width = 60;
+        animations[2].attacks[0].width = 80;
         animations[2].attacks[0].height = 10;
     }
 
@@ -289,7 +291,7 @@ int main( int argc, char* args[] )
         if(prog.delta_time > 1.0/prog.fps)prog.delta_time = 1.0/prog.fps;
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        printf("%03d %03d \r", entities[0].flipped,  entities[1].flipped);
+        printf("%f %f \r", entities[0].parry_timer,  entities[1].parry_timer);
 
     }
 

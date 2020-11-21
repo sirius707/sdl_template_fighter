@@ -23,6 +23,7 @@ goto state function
 done:
 animation, attacks,
 animation frame rate,
+multiple renderers for layers
 
 todo:
 combo system,  sounds
@@ -31,11 +32,10 @@ attack after effect, boom
 transition table
 make different hits produce different animations
 set animation function
-
-multiple renderers for layers
-
+crouch, low parry
 data files
 
 
 bugs: player keeps moving along x if you land while attacking: fixed
 	we seem to need to set can_attack in fall and jump whicn isn't called for since it should be set and unset only by attack: this doesn't seem to be a bug, or an issue at all
+

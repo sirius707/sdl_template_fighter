@@ -76,6 +76,8 @@ typedef struct CHARACTER{
    bool grounded;
    bool can_attack;
    bool is_attacking;
+   float parry_timer;//if not 0 then we're parrying
+   float low_parry_timer;//crouch parry
 
    CONTROLLER control;//AI or p1 or p2
    bool movement_control[4];//movement keys. updated by keyboard input or AI depending on control

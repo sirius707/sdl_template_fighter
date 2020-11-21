@@ -10,7 +10,7 @@
 #define NUMBER_OF_ATTACKS_PER_ANIMATION 4
 #define NUMBER_OF_ANIMATIONS 3
 
-#define ON_HIT_DELAY 0.17 //time to wait if a player hits or gets hit, pause for a while
+#define ON_HIT_DELAY 0.09 //time to wait if a player hits or gets hit, pause for a while
 
 #define ANIMATION_PLAY_RATE 10.0 //how many animation frames to play per second
 

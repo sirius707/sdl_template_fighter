@@ -14,6 +14,7 @@ void s_game_player_logic(void)
 
         entities[i].animation_elapsed_time += prog.delta_time;
         if(entities[i].processing_delay > 0)entities[i].processing_delay -= prog.delta_time;
+        if(entities[i].parry_timer > 0)entities[i].parry_timer -= prog.delta_time;
     }
 }
 
@@ -30,7 +31,10 @@ inline void s_game_animate(CHARACTER *player)
         uint8_t *frame = &player->current_frame;
 
         player->animation_end = !(ptr_animation->frames[*sequence][++(*frame)].active);
-        if(player->animation_end)*frame = 0;
+
+        if(player->animation_end){
+                *frame = 0;
+        }
 
         player->is_attacking = player->ptr_animation->frames[*sequence][*frame].data;
 
@@ -65,18 +69,20 @@ inline void s_game_player_fsm(CHARACTER *player)
         case IDLE:
             player->render_foreground = false;
             player->dx = movement_direction * DEFAULT_WALKSPD * prog.delta_time;
+
+            if(!(player->grounded)){
+                s_game_shift_player_state(player, FALL);
+            }
+
             if(movement_direction){
                  s_game_shift_player_state(player, forward? WALK : WALK_BACK );
             }
             if(player->movement_control[UP]){
-                    player->dy -= DEFAULT_JMPSPD * prog.delta_time;
-                    player->grounded = false;
-                    player->can_attack = true;
-                    s_game_shift_player_state(player, JUMP);
+                s_game_player_jump(player);
             }
-            if(!(player->grounded)){
-                s_game_shift_player_state(player, FALL);
-            }
+
+           if(player->action_control[ACTION_B])player->parry_timer = PARRY_WINDOW;//parry button
+
         break;
 
         case WALK:
@@ -89,11 +95,7 @@ inline void s_game_player_fsm(CHARACTER *player)
                 s_game_shift_player_state(player, IDLE);
             }
             if(player->movement_control[UP]){
-
-                    player->dy -= DEFAULT_JMPSPD * prog.delta_time;
-                    player->grounded = false;
-                    player->can_attack = true;
-                    s_game_shift_player_state(player, JUMP);
+                s_game_player_jump(player);
             }
         break;
 
@@ -125,18 +127,14 @@ inline void s_game_player_fsm(CHARACTER *player)
                  s_game_shift_player_state(player, WALK);
             }
             if(player->animation_end){
-                player->animation_end = false;
-                player->can_attack = true;
-                s_game_shift_player_state(player, player->cache_state);
+                s_game_goto_cached_state(player);
             }
         break;
 
         case ATTACK:
             if(player->grounded)player->dx = 0;
             if(player->animation_end){
-                player->animation_end = false;
-                player->can_attack = true;
-                s_game_shift_player_state(player, player->cache_state);
+                s_game_goto_cached_state(player);
             }
         break;
 
@@ -144,9 +142,14 @@ inline void s_game_player_fsm(CHARACTER *player)
             player->flipped = player->enemy->x < player->x;
             player->render_foreground = false;
             if(player->animation_end){
-                player->animation_end = false;
-                player->can_attack = true;
-                s_game_shift_player_state(player, player->cache_state);
+                s_game_goto_cached_state(player);
+            }
+        break;
+
+        case PARRY:
+            //player->enum_player_state = player->cache_state;//ugly but we need this to change logical state and retain parry animation, this is nice, but how can we detect animation end
+            if(player->animation_end){
+                s_game_goto_cached_state(player);
             }
         break;
 
@@ -171,6 +174,7 @@ inline void s_game_process_attacks(CHARACTER *player)
 
             ptr_attack = s_game_get_current_attack(player);
 
+            player->is_attacking = false;
             //construct hit bookx
             attack_x = player->x;
             attack_y = player->y + ptr_attack->y;
@@ -182,6 +186,7 @@ inline void s_game_process_attacks(CHARACTER *player)
                 attack_x += ptr_attack->x;
             }
 
+
             //if(fabs(player->x - player->enemy->x) < 100){
             if(aab_collision(attack_x, attack_y,
                             player->enemy->x, player->enemy->y,
@@ -191,6 +196,14 @@ inline void s_game_process_attacks(CHARACTER *player)
                 player->processing_delay = ON_HIT_DELAY;
                 player->enemy->processing_delay = ON_HIT_DELAY;
 
+                if(player->enemy->parry_timer > 0){
+                    player->can_attack =true;
+                    player->enemy->can_attack = true;
+                    s_game_cache_state(player->enemy);
+                    s_game_shift_player_state(player->enemy, PARRY);
+                    player->enemy->parry_timer = 0;
+                    return;
+                }
                 switch(player->enemy->enum_player_state){
                     case IDLE:
                     case BLOCK:
@@ -217,7 +230,6 @@ inline void s_game_process_attacks(CHARACTER *player)
 
                 }
             }
-            player->is_attacking = false;
         }
 
 }
@@ -275,13 +287,20 @@ inline void s_game_get_input(CHARACTER *player)
 //helper funcions
 inline void s_game_shift_player_state(CHARACTER *player, PLAYER_STATE state)
 {
+    if(0){//check transition table first
+
+    }else{//go to default state animation, only if we aren't already in that state, this is mainly to avoid the first attack being repeated endlessly
+        if(player->enum_player_state != state)
+        player->current_squence = player->ptr_animation->default_seqs[state];
+    }
+
     player->enum_player_state = state;
     player->frame_counter = 0;
     player->current_frame = 0;
     player->animation_end = false;
     player->animation_elapsed_time = 1;//so we don't wait for the animation when we shift to a new sequence
-    //check transition table first
-    player->current_squence = player->ptr_animation->default_seqs[state];
+
+
     //change animation
     //adjust values if need be
 }
@@ -303,6 +322,21 @@ inline void s_game_cache_state(CHARACTER *player)//pushes a player state into ca
     }
 }
 
+//shifts player state to cached state
+inline void s_game_goto_cached_state(CHARACTER *player)
+{
+    player->animation_end = false;
+    player->can_attack = true;//debatable
+    s_game_shift_player_state(player, player->cache_state);
+}
+
+inline void s_game_player_jump(CHARACTER *player)
+{
+    player->dy -= DEFAULT_JMPSPD * prog.delta_time;
+    player->grounded = false;
+    player->can_attack = true;
+    s_game_shift_player_state(player, JUMP);
+}
 
 ATK_INFO *s_game_get_current_attack(CHARACTER *player)
 {

@@ -118,6 +118,11 @@ void inline s_render_entity(CHARACTER *player)
     rect.w = sprite_w * sprite_scale;
     rect.h = sprite_h * sprite_scale;
 
+    if(player->enum_player_state == PARRY){
+        SDL_SetTextureColorMod(sprites, 50, 100, 255);
+    }else{
+        SDL_SetTextureColorMod(sprites, 255, 255, 255);
+    }
 
     if(player->flipped){
         SDL_RenderCopyEx(prog.renderer, sprites, &source, &rect, 0, NULL, SDL_FLIP_HORIZONTAL);
