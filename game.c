@@ -23,6 +23,7 @@ inline void s_game_animate(CHARACTER *player)
     if(player->processing_delay > 0) return;//don't process
 
     if(player->animation_elapsed_time >= 1/ANIMATION_PLAY_RATE){
+
         player->animation_elapsed_time = 0.0;
         //if at went beyond last frame loop
         //other wise advance frame by 1
@@ -159,6 +160,7 @@ inline void s_game_player_fsm(CHARACTER *player)
     }
 
     if(player->render_foreground)foreground_entity = player;
+    s_game_clear_action_keys(player);//we need to do this to make inputs more responsive, especially after parrying, if its too responsive just clear the keys in the input function itself
 }
 
 inline void s_game_process_attacks(CHARACTER *player)
@@ -195,9 +197,10 @@ inline void s_game_process_attacks(CHARACTER *player)
 
                 player->processing_delay = ON_HIT_DELAY;
                 player->enemy->processing_delay = ON_HIT_DELAY;
+                player->can_attack = true;
 
                 if(player->enemy->parry_timer > 0){
-                    player->can_attack =true;
+                    //player->can_attack =false;//maybe shift the attacker to a different sequence that leads to a heavy attack, to facilitate back and forth parrying
                     player->enemy->can_attack = true;
                     s_game_cache_state(player->enemy);
                     s_game_shift_player_state(player->enemy, PARRY);
@@ -248,10 +251,6 @@ inline void s_game_get_input(CHARACTER *player)
             player->action_control[ACTION_C] = prog.keyboard[SDL_SCANCODE_Z];
             player->action_control[ACTION_D] = prog.keyboard[SDL_SCANCODE_X];
 
-            prog.keyboard[SDL_SCANCODE_A] = 0;
-            prog.keyboard[SDL_SCANCODE_S] = 0;
-            prog.keyboard[SDL_SCANCODE_Z] = 0;
-            prog.keyboard[SDL_SCANCODE_X] = 0;
         break;
 
         case PLAYER_TWO:
@@ -266,6 +265,29 @@ inline void s_game_get_input(CHARACTER *player)
             player->action_control[ACTION_C] = prog.keyboard[SDL_SCANCODE_O];
             player->action_control[ACTION_D] = prog.keyboard[SDL_SCANCODE_P];
 
+            break;
+
+        case AI:
+            break;
+
+        default:
+            fprintf(stderr, "unknown player control value");
+            exit(EXIT_FAILURE);
+
+    }
+}
+
+void s_game_clear_action_keys(CHARACTER*player)
+{
+    switch(player->control){
+        case PLAYER_ONE:
+            prog.keyboard[SDL_SCANCODE_A] = 0;
+            prog.keyboard[SDL_SCANCODE_S] = 0;
+            prog.keyboard[SDL_SCANCODE_Z] = 0;
+            prog.keyboard[SDL_SCANCODE_X] = 0;
+        break;
+
+        case PLAYER_TWO:
             prog.keyboard[SDL_SCANCODE_9] = 0;
             prog.keyboard[SDL_SCANCODE_0] = 0;
             prog.keyboard[SDL_SCANCODE_O] = 0;
@@ -283,22 +305,23 @@ inline void s_game_get_input(CHARACTER *player)
     }
 }
 
-
 //helper funcions
 inline void s_game_shift_player_state(CHARACTER *player, PLAYER_STATE state)
 {
     if(0){//check transition table first
 
     }else{//go to default state animation, only if we aren't already in that state, this is mainly to avoid the first attack being repeated endlessly
-        if(player->enum_player_state != state)
-        player->current_squence = player->ptr_animation->default_seqs[state];
-    }
+        if(player->enum_player_state != state){
+            player->current_squence = player->ptr_animation->default_seqs[state];
 
-    player->enum_player_state = state;
-    player->frame_counter = 0;
-    player->current_frame = 0;
-    player->animation_end = false;
-    player->animation_elapsed_time = 1;//so we don't wait for the animation when we shift to a new sequence
+            player->enum_player_state = state;
+            player->frame_counter = 0;
+            player->current_frame = 0;
+            player->animation_end = false;
+            player->animation_elapsed_time = 1;//so we don't wait for the animation when we shift to a new sequence
+
+        }
+    }
 
 
     //change animation

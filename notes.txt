@@ -52,3 +52,6 @@ finish their counter attack
 
 input doesn't seem very responsive during parries and on hit delays.
 maybe we need to acquire input in a function and clear action keys in another function
+
+ther should be a get hit for light attacks (less frames, 2 seems ideal), mid attacks and heavy attacks
+more frames as you get heavier 

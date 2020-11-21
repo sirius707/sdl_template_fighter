@@ -172,7 +172,6 @@ int main( int argc, char* args[] )
         //get attacked
         animations[1].frames[5][0].x = 0;animations[1].frames[5][0].y = 400;animations[1].frames[5][0].active = 1;
         animations[1].frames[5][1].x = 160;animations[1].frames[5][1].y = 400;animations[1].frames[5][1].active = 1;
-        animations[1].frames[5][2].x = 0;animations[1].frames[5][2].y = 400;animations[1].frames[5][2].active = 1;
 
         //attack frames
         animations[1].frames[4][0].x = 159;animations[1].frames[4][0].y = 0;animations[1].frames[4][0].active = 1;
@@ -239,6 +238,7 @@ int main( int argc, char* args[] )
 
         //jump frames
         animations[2].frames[3][0].x = 80*1;animations[2].frames[3][0].y = 80*6;animations[2].frames[3][0].active = 1;
+        //animations[2].frames[3][1].x = 80*2;animations[2].frames[3][1].y = 80*6;animations[2].frames[3][1].active = 1;
 
         //fall frames
         animations[2].frames[1][0].x = 160;animations[2].frames[1][0].y = 320;animations[2].frames[1][0].active = 1;
@@ -251,7 +251,6 @@ int main( int argc, char* args[] )
          //get attacked
         animations[2].frames[5][0].x = 0;animations[2].frames[5][0].y = 320;animations[2].frames[5][0].active = 1;
         animations[2].frames[5][1].x = 80;animations[2].frames[5][1].y = 320;animations[2].frames[5][1].active = 1;
-        animations[2].frames[5][2].x = 0;animations[2].frames[5][2].y = 320;animations[2].frames[5][2].active = 1;
 
         //block
         animations[2].frames[6][0].x = 160;animations[2].frames[6][0].y = 80;animations[2].frames[6][0].active = 1;
