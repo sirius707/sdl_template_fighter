@@ -120,9 +120,12 @@ void inline s_render_entity(CHARACTER *player)
 
     if(player->enum_player_state == PARRY){
         SDL_SetTextureColorMod(sprites, 50, 100, 255);
+    }else if(player->parry_timer > 0){
+        SDL_SetTextureColorMod(sprites, 2, 255, 25);
     }else{
         SDL_SetTextureColorMod(sprites, 255, 255, 255);
     }
+
 
     if(player->flipped){
         SDL_RenderCopyEx(prog.renderer, sprites, &source, &rect, 0, NULL, SDL_FLIP_HORIZONTAL);
@@ -154,7 +157,6 @@ void inline s_render_entity(CHARACTER *player)
              SDL_SetRenderDrawColor(prog.renderer, 255, 0, 5, 255);
              SDL_RenderDrawRect(prog.renderer, &rect);
      //}
-
 }
 
 void s_render_prepare(void)
@@ -175,6 +177,6 @@ void s_render_total(void)
     s_render_entity(foreground_entity->enemy);
     s_render_entity(foreground_entity);
     //s_render_entities();
-
     s_render_present();
+
 }

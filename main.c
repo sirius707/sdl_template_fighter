@@ -29,7 +29,7 @@ int main( int argc, char* args[] )
     entities[0].can_attack = true;
     entities[0].flipped = false;
     entities[0].enemy = &entities[1];
-    entities[0].ptr_animation = &animations[1];
+    entities[0].ptr_animation = &animations[2];
     entities[0].current_squence = 1;//fall
 
     entities[1].x = 450;
@@ -238,7 +238,7 @@ int main( int argc, char* args[] )
 
         //jump frames
         animations[2].frames[3][0].x = 80*1;animations[2].frames[3][0].y = 80*6;animations[2].frames[3][0].active = 1;
-        //animations[2].frames[3][1].x = 80*2;animations[2].frames[3][1].y = 80*6;animations[2].frames[3][1].active = 1;
+        animations[2].frames[3][1].x = 80*2;animations[2].frames[3][1].y = 80*6;animations[2].frames[3][1].active = 1;
 
         //fall frames
         animations[2].frames[1][0].x = 160;animations[2].frames[1][0].y = 320;animations[2].frames[1][0].active = 1;
@@ -290,7 +290,7 @@ int main( int argc, char* args[] )
         if(prog.delta_time > 1.0/prog.fps)prog.delta_time = 1.0/prog.fps;
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        printf("%f %f \r", entities[0].parry_timer,  entities[1].parry_timer);
+        //printf("%f %f \r", entities[0].parry_timer,  entities[1].parry_timer);
 
     }
 

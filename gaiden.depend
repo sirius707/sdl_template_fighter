@@ -350,7 +350,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1605983755 source:f:\blocks\sdl_template\main.c
+1606085649 source:f:\blocks\sdl_template\main.c
 	"common.h"
 	"init.h"
 	"render.h"
@@ -371,9 +371,9 @@
 	"defs.h"
 	"structs.h"
 
-1605969915 f:\blocks\sdl_template\defs.h
+1606161849 f:\blocks\sdl_template\defs.h
 
-1605919668 f:\blocks\sdl_template\structs.h
+1605991030 f:\blocks\sdl_template\structs.h
 	"common.h"
 
 1605700544 source:f:\blocks\sdl_template\init.c
@@ -386,7 +386,7 @@
 1605706305 f:\blocks\sdl_template\render.h
 	"common.h"
 
-1605904865 source:f:\blocks\sdl_template\render.c
+1605994647 source:f:\blocks\sdl_template\render.c
 	"render.h"
 	"game.h"
 
@@ -396,10 +396,10 @@
 1604331618 f:\blocks\sdl_template\input.h
 	"common.h"
 
-1605986808 source:f:\blocks\sdl_template\game.c
+1605996774 source:f:\blocks\sdl_template\game.c
 	"game.h"
 
-1605974272 f:\blocks\sdl_template\game.h
+1605996992 f:\blocks\sdl_template\game.h
 	"common.h"
 
 1605817913 source:f:\blocks\sdl_template\physics.c

@@ -55,3 +55,14 @@ maybe we need to acquire input in a function and clear action keys in another fu
 
 ther should be a get hit for light attacks (less frames, 2 seems ideal), mid attacks and heavy attacks
 more frames as you get heavier 
+
+consider making a start parry animation, that would transfer to actual parry animation on successful parry
+actual parry animation will be different depending on the type of parried attack B)
+
+added on hit delay when jump is applied, because first frame disappeared too quickly and we need to say it.
+also we disable player->animation_loop in fsm to prevent animation from looping
+
+we need to retain action input values during delays, player should be able to execute attack immediately on parry, input needs a lot of work generally
+
+idea: switch sides each round
+

@@ -10,7 +10,12 @@
 #define DEFAULT_JMPSPD 700.0f
 #define DEFAULT_FALLSPD 20.7f
 
-#define PARRY_WINDOW 0.2f
+#define PARRY_WINDOW 0.43
+
+#define ON_HIT_DELAY 0.1 //time to wait if a player hits or gets hit, pause for a while
+#define PARRY_DELAY 0.09
+#define NORMAL_DELAY 0.09
+
 
 #define DEFAULT_MAX_JMPHEIGHT 290.f
 

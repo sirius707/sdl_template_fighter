@@ -31,10 +31,14 @@ inline void s_game_animate(CHARACTER *player)
         uint8_t *sequence = &player->current_squence;
         uint8_t *frame = &player->current_frame;
 
-        player->animation_end = !(ptr_animation->frames[*sequence][++(*frame)].active);
+        (*frame)++;
+        player->animation_end = !(ptr_animation->frames[*sequence][*frame].active);
 
         if(player->animation_end){
-                *frame = 0;
+                if(player->loop_animation)*frame = 0;
+                else{
+                  (*frame)--;
+                }
         }
 
         player->is_attacking = player->ptr_animation->frames[*sequence][*frame].data;
@@ -64,7 +68,7 @@ inline void s_game_player_fsm(CHARACTER *player)
 
     if(player->grounded)player->flipped = player->enemy->x < player->x;//flip player if facing wrong direction
     player->render_foreground = true;
-
+    player->loop_animation = true;
     switch(player->enum_player_state){
 
         case IDLE:
@@ -98,6 +102,7 @@ inline void s_game_player_fsm(CHARACTER *player)
             if(player->movement_control[UP]){
                 s_game_player_jump(player);
             }
+            if(player->action_control[ACTION_B])player->parry_timer = PARRY_WINDOW;
         break;
 
         case JUMP:
@@ -105,13 +110,12 @@ inline void s_game_player_fsm(CHARACTER *player)
             if(player->y >= GROUND_HEIGHT){//if player reached max height
                 player->dy = 0;
             }
-
             if(player->dy > 0){ // started falling
 
                 //player->can_attack = true;
                 s_game_shift_player_state(player, FALL);
             }
-
+            player->loop_animation = false;
         break;
 
         case FALL:
@@ -136,6 +140,10 @@ inline void s_game_player_fsm(CHARACTER *player)
             if(player->grounded)player->dx = 0;
             if(player->animation_end){
                 s_game_goto_cached_state(player);
+            }
+
+            if(player->can_attack){//can parry if i hit something, even if i am parried
+                if(player->action_control[ACTION_B])player->parry_timer = PARRY_WINDOW;//parry button
             }
         break;
 
@@ -355,6 +363,7 @@ inline void s_game_goto_cached_state(CHARACTER *player)
 
 inline void s_game_player_jump(CHARACTER *player)
 {
+    player->processing_delay = NORMAL_DELAY;//pause the first frame a little (;, looks cooler, also no physics is applied for a litle while
     player->dy -= DEFAULT_JMPSPD * prog.delta_time;
     player->grounded = false;
     player->can_attack = true;
