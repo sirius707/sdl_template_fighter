@@ -37,7 +37,7 @@ typedef struct FRAME{
 typedef struct ANIMATION{
     char name[20];
     ANIMATION_FRAME frames[MAX_SEQUENCES][MAX_FRAMES];
-    uint8_t transition_table[MAX_SEQUENCES][MAX_CHARACTER_STATES];//for when a sequence is interrupted by a state
+    int8_t transition_table[MAX_CHARACTER_STATES][MAX_SEQUENCES];//for when a sequence is interrupted by a state
     uint8_t default_seqs[MAX_CHARACTER_STATES];//index is player state, value is sequence, default to this if there is nothing in transition table
 
     uint8_t sprite_w;//visual width, used in rednering, must be bigger than logical width

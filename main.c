@@ -14,8 +14,6 @@ int main( int argc, char* args[] )
 {
     memset(&prog, 0, sizeof(PROGRAM));
     memset(entities, 0, sizeof(CHARACTER)*NUMBER_OF_PLAYERS);
-    memset(animations, 0, sizeof(ANIMATION)*NUMBER_OF_ANIMATIONS);
-
     init();
     s_render_init();
 
@@ -221,6 +219,8 @@ int main( int argc, char* args[] )
         animations[2].default_seqs[JUMP_BACK] = 3;
         animations[2].default_seqs[PARRY] = 6;
 
+        animations[2].transition_table[ATTACK][4] = 8;//second attack sequence
+
         //idle frames
         animations[2].frames[0][0].x = 0;animations[2].frames[0][0].y = 0;animations[2].frames[0][0].active = 1;
 
@@ -248,6 +248,13 @@ int main( int argc, char* args[] )
         animations[2].frames[4][1].x = 80;animations[2].frames[4][1].y = 80;animations[2].frames[4][1].active = 1;animations[2].frames[4][1].data = 1;
         animations[2].frames[4][2].x = 160;animations[2].frames[4][2].y = 80;animations[2].frames[4][2].active = 1;
 
+        //attack 2 frames
+        animations[2].frames[8][0].x = 0;animations[2].frames[8][0].y = 160;animations[2].frames[8][0].active = 1;
+        animations[2].frames[8][1].x = 80;animations[2].frames[8][1].y = 160;animations[2].frames[8][1].active = 1;animations[2].frames[8][2].data = 2;
+        animations[2].frames[8][2].x = 80*2;animations[2].frames[8][2].y = 160;animations[2].frames[8][2].active = 1;
+        animations[2].frames[8][3].x = 80*3;animations[2].frames[8][3].y = 160;animations[2].frames[8][3].active = 1;
+        animations[2].frames[8][4].x = 80*4;animations[2].frames[8][4].y = 160;animations[2].frames[8][4].active = 1;
+
          //get attacked
         animations[2].frames[5][0].x = 0;animations[2].frames[5][0].y = 320;animations[2].frames[5][0].active = 1;
         animations[2].frames[5][1].x = 80;animations[2].frames[5][1].y = 320;animations[2].frames[5][1].active = 1;
@@ -264,6 +271,13 @@ int main( int argc, char* args[] )
         animations[2].attacks[0].y = 0;
         animations[2].attacks[0].width = 80;
         animations[2].attacks[0].height = 10;
+
+        animations[2].attacks[1].damage = 2;
+        animations[2].attacks[1].target_dx = 2.3;
+        animations[2].attacks[1].x = 20;
+        animations[2].attacks[1].y = 0;
+        animations[2].attacks[1].width = 100;
+        animations[2].attacks[1].height = 10;
     }
 
     //frame rate capping

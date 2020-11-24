@@ -1,9 +1,11 @@
 #include "init.h"
 #include "render.h"
+#include "animation.h"
 
 void init()
 {
     sdl_init();
+    s_animation_init();
     prog.fps = 60;
     prog.enum_game_state = RUNNING;
 }

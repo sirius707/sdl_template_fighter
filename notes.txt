@@ -66,3 +66,6 @@ we need to retain action input values during delays, player should be able to ex
 
 idea: switch sides each round
 
+rendering in foreground is default, until specifically turned false
+
+make sure your variables are signed when you use -1

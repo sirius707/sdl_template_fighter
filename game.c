@@ -59,10 +59,7 @@ inline void s_game_player_fsm(CHARACTER *player)
 
     if(player->can_attack){
         if(player->action_control[ACTION_A]){
-            s_game_cache_state(player);
-            player->can_attack = false;
-            if(player->grounded)player->dx = 0;
-            s_game_shift_player_state(player, ATTACK);
+            s_game_player_attack(player);
         }
     }
 
@@ -81,6 +78,7 @@ inline void s_game_player_fsm(CHARACTER *player)
 
             if(movement_direction){
                  s_game_shift_player_state(player, forward? WALK : WALK_BACK );
+                 player->parry_timer = 0;//cancel parry if it's there
             }
             if(player->movement_control[UP]){
                 s_game_player_jump(player);
@@ -111,7 +109,6 @@ inline void s_game_player_fsm(CHARACTER *player)
                 player->dy = 0;
             }
             if(player->dy > 0){ // started falling
-
                 //player->can_attack = true;
                 s_game_shift_player_state(player, FALL);
             }
@@ -224,7 +221,7 @@ inline void s_game_process_attacks(CHARACTER *player)
                             player->enemy->can_attack = false;
                             s_game_cache_state(player->enemy);
                             s_game_shift_player_state(player->enemy, BLOCK);
-                            player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1) * 1.3;//increased because blocking
+                            player->enemy->dx += ptr_attack->target_dx * (player->flipped? -1: 1) * 1.3;//increased because blocking
                             player->enemy->dy = ptr_attack->target_dy;
 
                     break;
@@ -232,8 +229,8 @@ inline void s_game_process_attacks(CHARACTER *player)
                     default:
                             //appply attack stats
                             player->enemy->hp -= ptr_attack->damage;
-                            player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1);
-                            player->enemy->dy = ptr_attack->target_dy;
+                            player->enemy->dx += ptr_attack->target_dx * (player->flipped? -1: 1);
+                            player->enemy->dy += ptr_attack->target_dy;
 
                             player->enemy->can_attack = false;
                             s_game_cache_state(player->enemy);
@@ -316,20 +313,23 @@ void s_game_clear_action_keys(CHARACTER*player)
 //helper funcions
 inline void s_game_shift_player_state(CHARACTER *player, PLAYER_STATE state)
 {
-    if(0){//check transition table first
+    uint8_t current_sequence = player->current_squence;
 
+    if(player->ptr_animation->transition_table[state][current_sequence] != -1){//check transition table first
+        player->current_squence = player->ptr_animation->transition_table[state][current_sequence];
     }else{//go to default state animation, only if we aren't already in that state, this is mainly to avoid the first attack being repeated endlessly
         if(player->enum_player_state != state){
             player->current_squence = player->ptr_animation->default_seqs[state];
-
-            player->enum_player_state = state;
-            player->frame_counter = 0;
-            player->current_frame = 0;
-            player->animation_end = false;
-            player->animation_elapsed_time = 1;//so we don't wait for the animation when we shift to a new sequence
-
+        }else{
+            return;
         }
     }
+
+    player->enum_player_state = state;
+    player->frame_counter = 0;
+    player->current_frame = 0;
+    player->animation_end = false;
+    player->animation_elapsed_time = 1;//so we don't wait for the animation when we shift to a new sequence
 
 
     //change animation
@@ -367,7 +367,17 @@ inline void s_game_player_jump(CHARACTER *player)
     player->dy -= DEFAULT_JMPSPD * prog.delta_time;
     player->grounded = false;
     player->can_attack = true;
+    player->parry_timer = 0;
     s_game_shift_player_state(player, JUMP);
+}
+
+void s_game_player_attack(CHARACTER *player)
+{
+    s_game_cache_state(player);
+    player->can_attack = false;
+    player->parry_timer = 0;
+    if(player->grounded)player->dx = 0;
+    s_game_shift_player_state(player, ATTACK);
 }
 
 ATK_INFO *s_game_get_current_attack(CHARACTER *player)
