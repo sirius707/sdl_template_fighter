@@ -2,50 +2,24 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+	<File name="game.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="561" topLine="7" />
+		</Cursor>
+	</File>
 	<File name="common.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="128" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="defs.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="init.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="235" topLine="0" />
+			<Cursor1 position="99" topLine="0" />
 		</Cursor>
-	</File>
-	<File name="game.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="11312" topLine="247" />
-		</Cursor>
-		<Folding>
-			<Collapse line="59" />
-			<Collapse line="60" />
-			<Collapse line="77" />
-			<Collapse line="81" />
-			<Collapse line="84" />
-			<Collapse line="98" />
-			<Collapse line="122" />
-			<Collapse line="130" />
-			<Collapse line="133" />
-			<Collapse line="152" />
-			<Collapse line="159" />
-		</Folding>
 	</File>
 	<File name="init.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="177" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="main.c" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="13279" topLine="166" />
-		</Cursor>
-		<Folding>
-			<Collapse line="55" />
-		</Folding>
-	</File>
-	<File name="game.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="114" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="input.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -58,10 +32,21 @@
 			<Cursor1 position="1303" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="my_sdl_util.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="86" topLine="0" />
+			<Cursor1 position="14193" topLine="183" />
 		</Cursor>
+		<Folding>
+			<Collapse line="53" />
+		</Folding>
+	</File>
+	<File name="render.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5893" topLine="9" />
+		</Cursor>
+		<Folding>
+			<Collapse line="13" />
+		</Folding>
 	</File>
 	<File name="physics.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -73,27 +58,33 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="render.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5893" topLine="9" />
-		</Cursor>
-		<Folding>
-			<Collapse line="13" />
-		</Folding>
-	</File>
-	<File name="init.c" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="55" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="render.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="241" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="game.c" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14668" topLine="297" />
+		</Cursor>
+		<Folding>
+			<Collapse line="59" />
+			<Collapse line="60" />
+		</Folding>
+	</File>
 	<File name="structs.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2397" topLine="59" />
+			<Cursor1 position="307" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="defs.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="754" topLine="8" />
+		</Cursor>
+	</File>
+	<File name="my_sdl_util.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="86" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

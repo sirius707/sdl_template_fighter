@@ -35,7 +35,8 @@ set animation function
 crouch, low parry
 data files
 buffered inputo
-fix chain attacks physics
+fix chain attacks physics, also controls are very stiff
+
 bugs: player keeps moving along x if you land while attacking: fixed
 	we seem to need to set can_attack in fall and jump whicn isn't called for since it should be set and unset only by attack: this doesn't seem to be a bug, or an issue at all
 

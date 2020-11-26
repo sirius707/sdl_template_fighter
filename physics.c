@@ -17,8 +17,8 @@ void s_physics(void)
 
         //i don't think we will need velocity in a fighting game
         //but what about jumping?
-        entities[i].dy += prog.delta_time * entities[i].vel_y;
-        entities[i].dx += prog.delta_time * entities[i].vel_x;
+        //entities[i].dy += prog.delta_time * entities[i].vel_y;
+        //entities[i].dx += prog.delta_time * entities[i].vel_x;
 
         //collision detection
         entities[i].y += entities[i].dy;

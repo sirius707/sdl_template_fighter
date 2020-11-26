@@ -12,7 +12,7 @@
 
 #define PARRY_WINDOW 0.43
 
-#define ON_HIT_DELAY 0.1 //time to wait if a player hits or gets hit, pause for a while
+#define ON_HIT_DELAY 0.2 //time to wait if a player hits or gets hit, pause for a while
 #define PARRY_DELAY 0.09
 #define NORMAL_DELAY 0.09
 
@@ -31,6 +31,7 @@ void s_game_goto_cached_state(CHARACTER *player);
 
 void s_game_player_jump(CHARACTER *player);//go to jump state
 void s_game_player_attack(CHARACTER *player);// go to attack state
+void s_game_player_crouch(CHARACTER *player);
 
 ATK_INFO *s_game_get_current_attack(CHARACTER *player);
 

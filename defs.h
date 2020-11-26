@@ -10,7 +10,7 @@
 #define NUMBER_OF_ATTACKS_PER_ANIMATION 4
 #define NUMBER_OF_ANIMATIONS 3
 
-#define ANIMATION_PLAY_RATE 10.0 //how many animation frames to play per second
+#define ANIMATION_PLAY_RATE 12.0 //how many animation frames to play per second
 
 #define MOVEMENT_DIVIDER 0.55 //amount with which to slow movement
 
@@ -30,7 +30,7 @@
 
 #define MAX_CHARACTER_STATES 20
 
-typedef enum{ IDLE, WALK, WALK_BACK, JUMP, JUMP_BACK, ATTACK, DASH, GET_ATTACKED, BLOCK, PARRY, FALL}PLAYER_STATE;
+typedef enum{ IDLE, WALK, WALK_BACK, JUMP, JUMP_BACK, ATTACK, DASH, GET_ATTACKED, BLOCK, PARRY, FALL, CROUCH}PLAYER_STATE;
 typedef enum{ PLAYER_ONE, PLAYER_TWO, AI}CONTROLLER;
 typedef enum{ RUNNING, PAUSED}GAME_STATE;
 typedef enum{ HIGH, MID, LOW}ATTACK_TYPE;

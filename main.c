@@ -218,6 +218,7 @@ int main( int argc, char* args[] )
         animations[2].default_seqs[WALK_BACK] = 7;
         animations[2].default_seqs[JUMP_BACK] = 3;
         animations[2].default_seqs[PARRY] = 6;
+        animations[2].default_seqs[CROUCH] = 9;
 
         animations[2].transition_table[ATTACK][4] = 8;//second attack sequence
 
@@ -255,9 +256,15 @@ int main( int argc, char* args[] )
         animations[2].frames[8][3].x = 80*3;animations[2].frames[8][3].y = 160;animations[2].frames[8][3].active = 1;
         animations[2].frames[8][4].x = 80*4;animations[2].frames[8][4].y = 160;animations[2].frames[8][4].active = 1;
 
+        //crouch frames
+        animations[2].frames[9][0].x = 80;animations[2].frames[9][0].y = 0;animations[2].frames[9][0].active = 1;
+        animations[2].frames[9][1].x = 160;animations[2].frames[9][1].y = 0;animations[2].frames[9][1].active = 1;
+
          //get attacked
         animations[2].frames[5][0].x = 0;animations[2].frames[5][0].y = 320;animations[2].frames[5][0].active = 1;
         animations[2].frames[5][1].x = 80;animations[2].frames[5][1].y = 320;animations[2].frames[5][1].active = 1;
+        animations[2].frames[5][2].x = 80;animations[2].frames[5][3].y = 320;animations[2].frames[5][2].active = 1;
+        animations[2].frames[5][3].x = 80;animations[2].frames[5][2].y = 320;animations[2].frames[5][3].active = 1;
 
         //block
         animations[2].frames[6][0].x = 160;animations[2].frames[6][0].y = 80;animations[2].frames[6][0].active = 1;
@@ -266,18 +273,18 @@ int main( int argc, char* args[] )
 
          //attacks
         animations[2].attacks[0].damage = 2;
-        animations[2].attacks[0].target_dx = 1.3;
+        animations[2].attacks[0].target_dx = 0.7;
         animations[2].attacks[0].x = 20;
         animations[2].attacks[0].y = 0;
-        animations[2].attacks[0].width = 80;
-        animations[2].attacks[0].height = 10;
+        animations[2].attacks[0].width = 60;
+        animations[2].attacks[0].height = 20;
 
         animations[2].attacks[1].damage = 2;
-        animations[2].attacks[1].target_dx = 2.3;
+        animations[2].attacks[1].target_dx = 3;
         animations[2].attacks[1].x = 20;
         animations[2].attacks[1].y = 0;
-        animations[2].attacks[1].width = 100;
-        animations[2].attacks[1].height = 10;
+        animations[2].attacks[1].width = 80;
+        animations[2].attacks[1].height = 20;
     }
 
     //frame rate capping
@@ -295,16 +302,16 @@ int main( int argc, char* args[] )
         NOW = SDL_GetPerformanceCounter();
 
         s_input();
-
-        s_game_player_logic();
         s_physics();
+        s_game_player_logic();
+
         s_render_total();
 
         prog.delta_time = (double)((NOW - LAST)/ (double)SDL_GetPerformanceFrequency() );//temporary until a fix is found
         if(prog.delta_time > 1.0/prog.fps)prog.delta_time = 1.0/prog.fps;
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        //printf("%f %f \r", entities[0].parry_timer,  entities[1].parry_timer);
+        printf("%d %d \r", entities[0].hp,  entities[1].hp);
 
     }
 

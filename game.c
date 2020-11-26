@@ -8,8 +8,8 @@ void s_game_player_logic(void)
     for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
         s_game_get_input(&entities[i]);
         s_game_animate(&entities[i]);
-        s_game_process_attacks(&entities[i]);
         s_game_player_fsm(&entities[i]);
+        s_game_process_attacks(&entities[i]);
 
 
         entities[i].animation_elapsed_time += prog.delta_time;
@@ -84,6 +84,9 @@ inline void s_game_player_fsm(CHARACTER *player)
                 s_game_player_jump(player);
             }
 
+            if(player->movement_control[DOWN]){
+                s_game_player_crouch(player);
+            }
            if(player->action_control[ACTION_B])player->parry_timer = PARRY_WINDOW;//parry button
 
         break;
@@ -100,6 +103,7 @@ inline void s_game_player_fsm(CHARACTER *player)
             if(player->movement_control[UP]){
                 s_game_player_jump(player);
             }
+
             if(player->action_control[ACTION_B])player->parry_timer = PARRY_WINDOW;
         break;
 
@@ -113,6 +117,13 @@ inline void s_game_player_fsm(CHARACTER *player)
                 s_game_shift_player_state(player, FALL);
             }
             player->loop_animation = false;
+        break;
+
+        case CROUCH:
+            player->loop_animation = false;
+            if(!player->movement_control[DOWN]){
+                s_game_shift_player_state(player, IDLE);
+            }
         break;
 
         case FALL:
@@ -154,6 +165,7 @@ inline void s_game_player_fsm(CHARACTER *player)
 
         case PARRY:
             //player->enum_player_state = player->cache_state;//ugly but we need this to change logical state and retain parry animation, this is nice, but how can we detect animation end
+            if(player->action_control[ACTION_B])player->parry_timer = PARRY_WINDOW;//parry button
             if(player->animation_end){
                 s_game_goto_cached_state(player);
             }
@@ -212,27 +224,27 @@ inline void s_game_process_attacks(CHARACTER *player)
                     player->enemy->parry_timer = 0;
                     return;
                 }
+
+                player->enemy->dx = ptr_attack->target_dx * (player->flipped? -1: 1);
+                player->enemy->dy = ptr_attack->target_dy;
+
+                player->enemy->can_attack = false;
+
                 switch(player->enemy->enum_player_state){
                     case IDLE:
                     case BLOCK:
                     case WALK_BACK:
                     case JUMP_BACK:
                     //case walk_back: implement later
-                            player->enemy->can_attack = false;
+                            player->enemy->enum_player_state = 0;//reset to allow shift state to go to duplicate state
                             s_game_cache_state(player->enemy);
                             s_game_shift_player_state(player->enemy, BLOCK);
-                            player->enemy->dx += ptr_attack->target_dx * (player->flipped? -1: 1) * 1.3;//increased because blocking
-                            player->enemy->dy = ptr_attack->target_dy;
-
                     break;
 
                     default:
                             //appply attack stats
                             player->enemy->hp -= ptr_attack->damage;
-                            player->enemy->dx += ptr_attack->target_dx * (player->flipped? -1: 1);
-                            player->enemy->dy += ptr_attack->target_dy;
-
-                            player->enemy->can_attack = false;
+                            player->enemy->enum_player_state = 0;//reset to allow shift state to go to duplicate state
                             s_game_cache_state(player->enemy);
                             s_game_shift_player_state(player->enemy, GET_ATTACKED);
 
@@ -369,6 +381,16 @@ inline void s_game_player_jump(CHARACTER *player)
     player->can_attack = true;
     player->parry_timer = 0;
     s_game_shift_player_state(player, JUMP);
+}
+
+inline void s_game_player_crouch(CHARACTER *player)
+{
+    //player->processing_delay = NORMAL_DELAY;//pause the first frame a little (;, looks cooler, also no physics is applied for a litle while
+    player->dx -= 0;
+    player->grounded = true;
+    player->can_attack = true;
+    player->parry_timer = 0;
+    s_game_shift_player_state(player, CROUCH);
 }
 
 void s_game_player_attack(CHARACTER *player)

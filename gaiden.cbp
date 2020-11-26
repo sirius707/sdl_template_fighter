@@ -22,7 +22,6 @@
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-g" />
-					<Add option="-pedantic" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -51,6 +50,10 @@
 			<Add option="-lmingw32 -lSDL2main -lSDL2" />
 			<Add directory="G:/Programs/libraries and stuff/SDL2-devel-2.0.9-mingw/SDL2-2.0.9/i686-w64-mingw32/lib" />
 		</Linker>
+		<Unit filename="animation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="animation.h" />
 		<Unit filename="common.h" />
 		<Unit filename="defs.h" />
 		<Unit filename="game.c">

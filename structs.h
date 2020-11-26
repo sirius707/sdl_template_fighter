@@ -84,7 +84,7 @@ typedef struct CHARACTER{
    bool movement_control[4];//movement keys. updated by keyboard input or AI depending on control
    bool action_control[4];//action keys. updated by keyboard input or AI depnding on control
 
-   uint8_t hp;
+   int8_t hp;
 }CHARACTER;//todo:create 2 characters
 
 
