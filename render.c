@@ -27,7 +27,6 @@ inline void s_render_entities(void)
           int8_t x_displacement;
           int8_t y_displacement;
           bool flipped;
-          uint8_t layer_order;
 
           sprite_scale = entities[i].ptr_animation->sprite_scale;
           sprite_w = entities[i].ptr_animation->sprite_w;
@@ -76,7 +75,7 @@ inline void s_render_entities(void)
 
 }
 
-void inline s_render_entity(CHARACTER *player)
+inline void s_render_entity(CHARACTER *player)
 {
     SDL_Texture *sprites = player->ptr_animation->sprite_sheet;
     uint8_t current_frame;
@@ -89,7 +88,6 @@ void inline s_render_entity(CHARACTER *player)
     int8_t x_displacement;
     int8_t y_displacement;
     bool flipped;
-    uint8_t layer_order;
 
     sprite_scale = player->ptr_animation->sprite_scale;
     sprite_w = player->ptr_animation->sprite_w;

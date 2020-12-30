@@ -6,7 +6,7 @@ extern CHARACTER entities[];
 void s_game_player_logic(void)
 {
     for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
-        s_game_get_input(&entities[i]);
+        s_game_get_input();
         s_game_animate(&entities[i]);
         s_game_player_fsm(&entities[i]);
         s_game_process_attacks(&entities[i]);
@@ -254,44 +254,28 @@ inline void s_game_process_attacks(CHARACTER *player)
 
 }
 
-inline void s_game_get_input(CHARACTER *player)
+inline void s_game_get_input(void)
 {
-    switch(player->control){
-        case PLAYER_ONE:
-            player->movement_control[UP] = prog.keyboard[SDL_SCANCODE_U];
-            player->movement_control[LEFT] = prog.keyboard[SDL_SCANCODE_H];
-            player->movement_control[RIGHT] = prog.keyboard[SDL_SCANCODE_K];
-            player->movement_control[DOWN] = prog.keyboard[SDL_SCANCODE_J];
+            input.p1_movement[UP] = prog.keyboard[SDL_SCANCODE_U];
+            input.p1_movement[LEFT] = prog.keyboard[SDL_SCANCODE_H];
+            input.p1_movement[RIGHT] = prog.keyboard[SDL_SCANCODE_K];
+            input.p1_movement[DOWN] = prog.keyboard[SDL_SCANCODE_J];
 
-            player->action_control[ACTION_A] = prog.keyboard[SDL_SCANCODE_A];
-            player->action_control[ACTION_B] = prog.keyboard[SDL_SCANCODE_S];
-            player->action_control[ACTION_C] = prog.keyboard[SDL_SCANCODE_Z];
-            player->action_control[ACTION_D] = prog.keyboard[SDL_SCANCODE_X];
+            input.p1_action[ACTION_A] = prog.keyboard[SDL_SCANCODE_A];
+            input.p1_action[ACTION_B] = prog.keyboard[SDL_SCANCODE_S];
+            input.p1_action[ACTION_C] = prog.keyboard[SDL_SCANCODE_Z];
+            input.p1_action[ACTION_D] = prog.keyboard[SDL_SCANCODE_X];
 
-        break;
 
-        case PLAYER_TWO:
+            input.p2_movement[UP] = prog.keyboard[SDL_SCANCODE_UP];
+            input.p2_movement[LEFT] = prog.keyboard[SDL_SCANCODE_LEFT];
+            input.p2_movement[RIGHT] = prog.keyboard[SDL_SCANCODE_RIGHT];
+            input.p2_movement[DOWN] = prog.keyboard[SDL_SCANCODE_DOWN];
 
-            player->movement_control[UP] = prog.keyboard[SDL_SCANCODE_UP];
-            player->movement_control[LEFT] = prog.keyboard[SDL_SCANCODE_LEFT];
-            player->movement_control[RIGHT] = prog.keyboard[SDL_SCANCODE_RIGHT];
-            player->movement_control[DOWN] = prog.keyboard[SDL_SCANCODE_DOWN];
-
-            player->action_control[ACTION_A] = prog.keyboard[SDL_SCANCODE_9];
-            player->action_control[ACTION_B] = prog.keyboard[SDL_SCANCODE_0];
-            player->action_control[ACTION_C] = prog.keyboard[SDL_SCANCODE_O];
-            player->action_control[ACTION_D] = prog.keyboard[SDL_SCANCODE_P];
-
-            break;
-
-        case AI:
-            break;
-
-        default:
-            fprintf(stderr, "unknown player control value");
-            exit(EXIT_FAILURE);
-
-    }
+            input.p2_action[ACTION_A] = prog.keyboard[SDL_SCANCODE_9];
+            input.p2_action[ACTION_B] = prog.keyboard[SDL_SCANCODE_0];
+            input.p2_action[ACTION_C] = prog.keyboard[SDL_SCANCODE_O];
+            input.p2_action[ACTION_D] = prog.keyboard[SDL_SCANCODE_P];
 }
 
 void s_game_clear_action_keys(CHARACTER*player)
@@ -386,7 +370,7 @@ inline void s_game_player_jump(CHARACTER *player)
 inline void s_game_player_crouch(CHARACTER *player)
 {
     //player->processing_delay = NORMAL_DELAY;//pause the first frame a little (;, looks cooler, also no physics is applied for a litle while
-    player->dx -= 0;
+    player->dx = 0;
     player->grounded = true;
     player->can_attack = true;
     player->parry_timer = 0;

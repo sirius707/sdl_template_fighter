@@ -13,6 +13,16 @@ typedef struct PROGRAM{
 
 }PROGRAM;
 
+typedef struct INPUT{
+    bool p1_movement[4];
+    bool p2_movement[4];
+    bool ai_movement[4];
+    bool p1_action[4];
+    bool p2_action[4];
+    bool ai_action[4];
+
+
+}INPUT;
 
 typedef struct{
     //hitbox
@@ -81,8 +91,8 @@ typedef struct CHARACTER{
    float low_parry_timer;//crouch parry
 
    CONTROLLER control;//AI or p1 or p2
-   bool movement_control[4];//movement keys. updated by keyboard input or AI depending on control
-   bool action_control[4];//action keys. updated by keyboard input or AI depnding on control
+   bool *movement_control;//movement keys. updated by keyboard input or AI depending on control, ptr to array
+   bool *action_control;//action keys. updated by keyboard input or AI depnding on control, ptr to array
 
    int8_t hp;
 }CHARACTER;//todo:create 2 characters
@@ -91,3 +101,4 @@ typedef struct CHARACTER{
 PROGRAM prog;
 CHARACTER entities[NUMBER_OF_PLAYERS];CHARACTER *foreground_entity;
 ANIMATION animations[NUMBER_OF_ANIMATIONS];
+INPUT input;

@@ -13,6 +13,7 @@
 int main( int argc, char* args[] )
 {
     memset(&prog, 0, sizeof(PROGRAM));
+    memset(&input, 0, sizeof(INPUT));
     memset(entities, 0, sizeof(CHARACTER)*NUMBER_OF_PLAYERS);
     init();
     s_render_init();
@@ -29,6 +30,8 @@ int main( int argc, char* args[] )
     entities[0].enemy = &entities[1];
     entities[0].ptr_animation = &animations[2];
     entities[0].current_squence = 1;//fall
+    entities[0].action_control = input.p1_action;
+    entities[0].movement_control = input.p1_movement;
 
     entities[1].x = 450;
     entities[1].y = 20;
@@ -42,6 +45,8 @@ int main( int argc, char* args[] )
     entities[1].enemy = &entities[0];
     entities[1].ptr_animation = &animations[2];
     entities[1].current_squence = 1;//fall
+    entities[1].action_control = input.p2_action;
+    entities[1].movement_control = input.p2_movement;
 
     foreground_entity = &entities[0];
 

@@ -24,18 +24,21 @@ done:
 animation, attacks,
 animation frame rate,
 multiple renderers for layers
+fix chain attacks physics, also controls are very stiff
+reduce speed when walking backwards,
+delay on hit
+transition table
+crouch
 
 todo:
-combo system,  sounds
-reduce speed when walking backwards, load from files, delay on hit
+combo system,  
+sounds, back ground music
+load from files, 
 attack after effect, boom
-transition table
 make different hits produce different animations
-set animation function
-crouch, low parry
+low parry
 data files
-buffered inputo
-fix chain attacks physics, also controls are very stiff
+buffered input
 
 bugs: player keeps moving along x if you land while attacking: fixed
 	we seem to need to set can_attack in fall and jump whicn isn't called for since it should be set and unset only by attack: this doesn't seem to be a bug, or an issue at all
