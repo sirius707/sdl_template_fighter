@@ -1,3 +1,10 @@
+ /******************************************************************************
+ *
+ * Module: Game Logic Routines
+ *
+ * Description: functions and data used in handling game logic
+ *
+ *******************************************************************************/
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
