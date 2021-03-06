@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1605720250 source:f:\blocks\sdl_template\my_sdl_util.c
+1614987493 source:f:\blocks\sdl_template\my_sdl_util.c
 	"my_sdl_util.h"
 	<assert.h>
 
-1605711330 f:\blocks\sdl_template\my_sdl_util.h
+1614987493 f:\blocks\sdl_template\my_sdl_util.h
 	<SDL.h>
 	<stdbool.h>
 	"stdio.h"
@@ -350,15 +350,16 @@
 	"begin_code.h"
 	"close_code.h"
 
-1606412618 source:f:\blocks\sdl_template\main.c
+1614988937 source:f:\blocks\sdl_template\main.c
 	"common.h"
+	"structs.h"
 	"init.h"
 	"render.h"
 	"input.h"
 	"game.h"
 	"physics.h"
 
-1605190826 f:\blocks\sdl_template\common.h
+1614988905 f:\blocks\sdl_template\common.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -369,49 +370,57 @@
 	<assert.h>
 	"my_sdl_util.h"
 	"defs.h"
-	"structs.h"
 
-1606271214 f:\blocks\sdl_template\defs.h
+1614987493 f:\blocks\sdl_template\defs.h
 
-1606411611 f:\blocks\sdl_template\structs.h
+1614988923 f:\blocks\sdl_template\structs.h
 	"common.h"
 
-1606175291 source:f:\blocks\sdl_template\init.c
+1614988531 source:f:\blocks\sdl_template\init.c
 	"init.h"
 	"render.h"
 	"animation.h"
 
-1605700517 f:\blocks\sdl_template\init.h
+1614989031 f:\blocks\sdl_template\init.h
 	"common.h"
+	"structs.h"
 
-1605706305 f:\blocks\sdl_template\render.h
+1614988996 f:\blocks\sdl_template\render.h
 	"common.h"
+	"structs.h"
 
-1606412401 source:f:\blocks\sdl_template\render.c
+1614987493 source:f:\blocks\sdl_template\render.c
 	"render.h"
 	"game.h"
 
-1605191188 source:f:\blocks\sdl_template\input.c
+1614988593 source:f:\blocks\sdl_template\input.c
 	"input.h"
 
-1604331618 f:\blocks\sdl_template\input.h
+1614989027 f:\blocks\sdl_template\input.h
 	"common.h"
+	"structs.h"
 
-1608155047 source:f:\blocks\sdl_template\game.c
+1614988652 source:f:\blocks\sdl_template\game.c
 	"game.h"
 
-1614982889 f:\blocks\sdl_template\game.h
+1614988961 f:\blocks\sdl_template\game.h
 	"common.h"
+	"structs.h"
 
-1606182375 source:f:\blocks\sdl_template\physics.c
+1614988629 source:f:\blocks\sdl_template\physics.c
 	"physics.h"
 
-1605296324 f:\blocks\sdl_template\physics.h
+1614989009 f:\blocks\sdl_template\physics.h
 	"common.h"
+	"structs.h"
 
-1606175273 source:f:\blocks\sdl_template\animation.c
+1614988600 source:f:\blocks\sdl_template\animation.c
 	"animation.h"
 
-1606175258 f:\blocks\sdl_template\animation.h
+1614989039 f:\blocks\sdl_template\animation.h
 	"common.h"
+	"structs.h"
+
+1614988032 source:f:\blocks\sdl_template\struct.c
+	"structs.h"
 

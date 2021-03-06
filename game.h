@@ -8,7 +8,9 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
-#include "common.h"//SDL, structs
+#include "common.h"//SDL
+#include "structs.h"//structs
+
 
 #define GROUND_HEIGHT 400
 #define G 5.5f

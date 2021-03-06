@@ -2,6 +2,7 @@
 #include "render.h"
 #include "animation.h"
 
+
 void init()
 {
     sdl_init();

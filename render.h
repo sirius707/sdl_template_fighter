@@ -2,6 +2,7 @@
 #define RENDER_H_INCLUDED
 
 #include "common.h"
+#include "structs.h"//structs
 
 void s_render_init(void);
 

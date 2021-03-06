@@ -11,6 +11,7 @@
 #define DEFAULT_MAX_JMPHEIGHT 290.f
 
 #include "common.h"
+#include "structs.h"//structs
 
 void s_physics(void);
 

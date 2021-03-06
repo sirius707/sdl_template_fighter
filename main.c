@@ -1,5 +1,6 @@
 #include "common.h"
 
+#include "structs.h"
 #include "init.h"
 #include "render.h"
 #include "input.h"

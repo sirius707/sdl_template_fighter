@@ -1,8 +1,9 @@
 #ifndef INIT_H_INCLUDED
 #define INIT_H_INCLUDED
 
-#include "common.h"
 
+#include "common.h"
+#include "structs.h"//structs
 
 void init();
 void deinit();

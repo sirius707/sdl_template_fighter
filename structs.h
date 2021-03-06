@@ -1,4 +1,7 @@
-#include "common.h"//redundant? it still compiles if i don't include this
+#ifndef STRUCTS_H_
+#define STRUCTS_H_
+
+#include "common.h"
 
 typedef struct PROGRAM{
 	SDL_Renderer *renderer;
@@ -98,7 +101,11 @@ typedef struct CHARACTER{
 }CHARACTER;//todo:create 2 characters
 
 
-PROGRAM prog;
-CHARACTER entities[NUMBER_OF_PLAYERS];CHARACTER *foreground_entity;
-ANIMATION animations[NUMBER_OF_ANIMATIONS];
-INPUT input;
+extern ANIMATION animations[];
+extern CHARACTER entities[];
+extern PROGRAM prog;
+extern CHARACTER *foreground_entity;
+extern INPUT input;
+
+
+#endif // STRUCTS_H_

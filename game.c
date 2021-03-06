@@ -1,8 +1,5 @@
 #include "game.h"
 
-//external access will be to entities, animations and attacks
-extern CHARACTER entities[];
-
 void s_game_player_logic(void)
 {
     for(int i = 0; i < NUMBER_OF_PLAYERS; i++){

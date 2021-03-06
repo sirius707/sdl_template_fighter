@@ -1,7 +1,5 @@
 #include "physics.h"
 
-//external access will be to entities
-extern CHARACTER entities[];
 
 void s_physics(void)
 {

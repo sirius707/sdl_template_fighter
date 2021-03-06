@@ -1,8 +1,6 @@
 #include "render.h"
 #include "game.h"//temporary
 
-extern CHARACTER entities[];
-
 SDL_Texture *background;
 
 void s_render_init(void)
