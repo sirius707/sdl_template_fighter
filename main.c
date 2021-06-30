@@ -214,6 +214,7 @@ int main( int argc, char* args[] )
         animations[2].sprite_scale = 2;
 
         animations[2].transition_table[FALL][IDLE] = 0;
+        animations[2].transition_table[GET_ATTACKED][IDLE] = 1;
         animations[2].default_seqs[IDLE] = 0;
         animations[2].default_seqs[FALL] = 1;
         animations[2].default_seqs[WALK] = 2;
@@ -226,7 +227,7 @@ int main( int argc, char* args[] )
         animations[2].default_seqs[PARRY] = 6;
         animations[2].default_seqs[CROUCH] = 9;
 
-        animations[2].transition_table[ATTACK][4] = 8;//second attack sequence
+        animations[2].transition_table[ATTACK][4] = 8;//second attack sequence, chain attack after first attack connects
 
         //idle frames
         animations[2].frames[0][0].x = 0;animations[2].frames[0][0].y = 0;animations[2].frames[0][0].active = 1;

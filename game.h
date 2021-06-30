@@ -32,7 +32,6 @@ void s_game_player_logic(void);
 void s_game_player_fsm(CHARACTER *player);
 void s_game_get_input(void);
 void s_game_clear_action_keys();
-void s_game_animate(CHARACTER *player);
 void s_game_process_attacks(CHARACTER *player);
 void s_game_shift_player_state(CHARACTER *player, PLAYER_STATE state);//change state and animation
 void s_game_cache_state(CHARACTER *player);

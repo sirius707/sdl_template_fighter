@@ -10,7 +10,7 @@
 #define NUMBER_OF_ATTACKS_PER_ANIMATION 4
 #define NUMBER_OF_ANIMATIONS 3
 
-#define ANIMATION_PLAY_RATE 12.0 //how many animation frames to play per second
+#define ANIMATION_PLAY_RATE 12.0 //how many animation frames to play per second // this should be a variable to allow designers to fine tune characters
 
 #define MOVEMENT_DIVIDER 0.55 //amount with which to slow movement
 

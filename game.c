@@ -1,10 +1,11 @@
 #include "game.h"
+#include "animation.h"
 
 void s_game_player_logic(void)
 {
     for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
         s_game_get_input();
-        s_game_animate(&entities[i]);
+        s_animation_animate(&entities[i]);
         s_game_player_fsm(&entities[i]);
         s_game_process_attacks(&entities[i]);
 
@@ -13,35 +14,6 @@ void s_game_player_logic(void)
         if(entities[i].processing_delay > 0)entities[i].processing_delay -= prog.delta_time;
         if(entities[i].parry_timer > 0)entities[i].parry_timer -= prog.delta_time;
     }
-}
-
-inline void s_game_animate(CHARACTER *player)
-{
-    if(player->processing_delay > 0) return;//don't process
-
-    if(player->animation_elapsed_time >= 1/ANIMATION_PLAY_RATE){
-
-        player->animation_elapsed_time = 0.0;
-        //if at went beyond last frame loop
-        //other wise advance frame by 1
-        const ANIMATION *ptr_animation = player->ptr_animation;
-        uint8_t *sequence = &player->current_squence;
-        uint8_t *frame = &player->current_frame;
-
-        (*frame)++;
-        player->animation_end = !(ptr_animation->frames[*sequence][*frame].active);
-
-        if(player->animation_end){
-                if(player->loop_animation)*frame = 0;
-                else{
-                  (*frame)--;
-                }
-        }
-
-        player->is_attacking = player->ptr_animation->frames[*sequence][*frame].data;
-
-    }
-
 }
 
 inline void s_game_player_fsm(CHARACTER *player)
@@ -153,10 +125,11 @@ inline void s_game_player_fsm(CHARACTER *player)
         break;
 
         case GET_ATTACKED:
-            player->flipped = player->enemy->x < player->x;
-            player->render_foreground = false;
+            //player->flipped = player->enemy->x < player->x; //flip to direction of attack
+            //player->render_foreground = false;
             if(player->animation_end){
-                s_game_goto_cached_state(player);
+                s_game_shift_player_state(player, IDLE);
+                //s_game_goto_cached_state(player);
             }
         break;
 
@@ -185,7 +158,7 @@ inline void s_game_process_attacks(CHARACTER *player)
         //
 
         if(player->is_attacking){
-            ATK_INFO *ptr_attack;
+            ATK_INFO *ptr_attack = NULL;
             float attack_x, attack_y, attack_w, attack_h;//hit box
 
             ptr_attack = s_game_get_current_attack(player);
@@ -242,7 +215,11 @@ inline void s_game_process_attacks(CHARACTER *player)
                             //appply attack stats
                             player->enemy->hp -= ptr_attack->damage;
                             player->enemy->enum_player_state = 0;//reset to allow shift state to go to duplicate state
-                            s_game_cache_state(player->enemy);
+
+                            player->enemy->flipped = player->x < player->enemy->x; //flip to direction of attack
+                            player->enemy->render_foreground = false;
+
+                            //s_game_cache_state(player->enemy);
                             s_game_shift_player_state(player->enemy, GET_ATTACKED);
 
                 }

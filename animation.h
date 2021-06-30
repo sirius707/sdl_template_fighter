@@ -7,5 +7,6 @@
 
 
 void s_animation_init(void);
+void s_animation_animate(CHARACTER *player);
 
 #endif // ANIMATION_H_INCLUDED

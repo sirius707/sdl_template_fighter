@@ -66,6 +66,7 @@ typedef struct ANIMATION{
 
 
 typedef struct CHARACTER{
+    /*transform*/
    float x;uint16_t width;//logical width, used in physics
    float y;uint16_t height;//logical height, used in physics
    float vel_x;float dx;
@@ -76,6 +77,7 @@ typedef struct CHARACTER{
    bool flipped;
    struct CHARACTER *enemy;//we need this so we can flip the sprite to "look at the enemy"
 
+    /*animation*/
    ANIMATION *ptr_animation;
    uint8_t current_squence;
    uint8_t current_frame;
@@ -85,6 +87,7 @@ typedef struct CHARACTER{
    bool render_foreground;
    bool loop_animation;
 
+    /*gameplay*/
    PLAYER_STATE enum_player_state;
    PLAYER_STATE cache_state;//temporary state that will be use to store current state if we shift to attack state, attack state is responsible for returning us to the cached state
    bool grounded;
@@ -93,6 +96,7 @@ typedef struct CHARACTER{
    float parry_timer;//if not 0 then we're parrying
    float low_parry_timer;//crouch parry
 
+    /*control*/
    CONTROLLER control;//AI or p1 or p2
    bool *movement_control;//movement keys. updated by keyboard input or AI depending on control, ptr to array
    bool *action_control;//action keys. updated by keyboard input or AI depnding on control, ptr to array
