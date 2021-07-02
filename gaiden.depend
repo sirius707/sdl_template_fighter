@@ -350,7 +350,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1614988937 source:f:\blocks\sdl_template\main.c
+1616797392 source:f:\blocks\sdl_template\main.c
 	"common.h"
 	"structs.h"
 	"init.h"
@@ -371,9 +371,9 @@
 	"my_sdl_util.h"
 	"defs.h"
 
-1614987493 f:\blocks\sdl_template\defs.h
+1616970631 f:\blocks\sdl_template\defs.h
 
-1614988923 f:\blocks\sdl_template\structs.h
+1616967374 f:\blocks\sdl_template\structs.h
 	"common.h"
 
 1614988531 source:f:\blocks\sdl_template\init.c
@@ -389,7 +389,7 @@
 	"common.h"
 	"structs.h"
 
-1614987493 source:f:\blocks\sdl_template\render.c
+1614989084 source:f:\blocks\sdl_template\render.c
 	"render.h"
 	"game.h"
 
@@ -400,10 +400,11 @@
 	"common.h"
 	"structs.h"
 
-1614988652 source:f:\blocks\sdl_template\game.c
+1616971237 source:f:\blocks\sdl_template\game.c
 	"game.h"
+	"animation.h"
 
-1614988961 f:\blocks\sdl_template\game.h
+1616971272 f:\blocks\sdl_template\game.h
 	"common.h"
 	"structs.h"
 
@@ -414,13 +415,13 @@
 	"common.h"
 	"structs.h"
 
-1614988600 source:f:\blocks\sdl_template\animation.c
+1616971074 source:f:\blocks\sdl_template\animation.c
 	"animation.h"
 
-1614989039 f:\blocks\sdl_template\animation.h
+1616971129 f:\blocks\sdl_template\animation.h
 	"common.h"
 	"structs.h"
 
-1614988032 source:f:\blocks\sdl_template\struct.c
+1616860564 source:f:\blocks\sdl_template\struct.c
 	"structs.h"
 

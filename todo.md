@@ -38,6 +38,7 @@ attack after effect, boom
 make different hits produce different animations
 low parry
 data files
+stage
 buffered input
 
 bugs: player keeps moving along x if you land while attacking: fixed

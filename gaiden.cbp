@@ -45,10 +45,12 @@
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add directory="G:/Programs/libraries and stuff/SDL2-devel-2.0.9-mingw/SDL2-2.0.9/i686-w64-mingw32/include/SDL2" />
+			<Add directory="E:/libraries/SDL2-2.0.14/i686-w64-mingw32/include/SDL2" />
 		</Compiler>
 		<Linker>
 			<Add option="-lmingw32 -lSDL2main -lSDL2" />
 			<Add directory="G:/Programs/libraries and stuff/SDL2-devel-2.0.9-mingw/SDL2-2.0.9/i686-w64-mingw32/lib" />
+			<Add directory="E:/libraries/SDL2-2.0.14/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="animation.c">
 			<Option compilerVar="CC" />
@@ -84,10 +86,6 @@
 		</Unit>
 		<Unit filename="render.h" />
 		<Unit filename="structs.h" />
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
