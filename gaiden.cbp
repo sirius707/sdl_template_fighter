@@ -85,6 +85,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="render.h" />
+		<Unit filename="struct.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="structs.h" />
 		<Extensions />
 	</Project>

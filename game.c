@@ -164,7 +164,7 @@ inline void s_game_process_attacks(CHARACTER *player)
             ptr_attack = s_game_get_current_attack(player);
 
             player->is_attacking = false;
-            //construct hit bookx
+            //construct hit box
             attack_x = player->x;
             attack_y = player->y + ptr_attack->y;
             attack_w = ptr_attack->width;

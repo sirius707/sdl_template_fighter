@@ -208,7 +208,6 @@ int main( int argc, char* args[] )
         animations[2].sprite_y_displacement = -30;
         animations[2].sprite_x_displacement = 0;
         animations[2].sprite_sheet = accelerate_surface(temp_surface, prog.renderer, SDL_MapRGB(temp_surface->format, 0, 0, 0));
-        assert(animations[2].sprite_sheet !=  NULL);
         animations[2].sprite_w = 80;
         animations[2].sprite_h = 80;
         animations[2].sprite_scale = 2;
