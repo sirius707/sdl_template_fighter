@@ -17,11 +17,18 @@ typedef struct PROGRAM{
 }PROGRAM;
 
 typedef struct INPUT{
+
     bool p1_movement[4];
-    bool p2_movement[4];
-    bool ai_movement[4];
     bool p1_action[4];
+    bool p1_input_buffer[INPUT_BUFFER_LENGTH][4];
+    uint8_t p1_buffer_index;
+
+    bool p2_movement[4];
     bool p2_action[4];
+    bool p2_input_buffer[INPUT_BUFFER_LENGTH][4];
+    uint8_t p2_buffer_index;
+
+    bool ai_movement[4];
     bool ai_action[4];
 
 

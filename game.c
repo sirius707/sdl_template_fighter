@@ -252,6 +252,30 @@ inline void s_game_get_input(void)
             input.p2_action[ACTION_D] = prog.keyboard[SDL_SCANCODE_P];
 }
 
+inline void s_game_get_player_input(CHARACTER *player)
+{
+            input.p1_movement[UP] = prog.keyboard[SDL_SCANCODE_U];
+            input.p1_movement[LEFT] = prog.keyboard[SDL_SCANCODE_H];
+            input.p1_movement[RIGHT] = prog.keyboard[SDL_SCANCODE_K];
+            input.p1_movement[DOWN] = prog.keyboard[SDL_SCANCODE_J];
+
+            input.p1_action[ACTION_A] = prog.keyboard[SDL_SCANCODE_A];
+            input.p1_action[ACTION_B] = prog.keyboard[SDL_SCANCODE_S];
+            input.p1_action[ACTION_C] = prog.keyboard[SDL_SCANCODE_Z];
+            input.p1_action[ACTION_D] = prog.keyboard[SDL_SCANCODE_X];
+
+
+            input.p2_movement[UP] = prog.keyboard[SDL_SCANCODE_UP];
+            input.p2_movement[LEFT] = prog.keyboard[SDL_SCANCODE_LEFT];
+            input.p2_movement[RIGHT] = prog.keyboard[SDL_SCANCODE_RIGHT];
+            input.p2_movement[DOWN] = prog.keyboard[SDL_SCANCODE_DOWN];
+
+            input.p2_action[ACTION_A] = prog.keyboard[SDL_SCANCODE_9];
+            input.p2_action[ACTION_B] = prog.keyboard[SDL_SCANCODE_0];
+            input.p2_action[ACTION_C] = prog.keyboard[SDL_SCANCODE_O];
+            input.p2_action[ACTION_D] = prog.keyboard[SDL_SCANCODE_P];
+}
+
 void s_game_clear_action_keys(CHARACTER*player)
 {
     switch(player->control){
