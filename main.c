@@ -205,17 +205,19 @@ int main( int argc, char* args[] )
         return EXIT_FAILURE;
     }
     {//character 3: genkai
-        animations[2].sprite_y_displacement = -30;
-        animations[2].sprite_x_displacement = 0;
+        FILE *testfile = fopen("genkai", "rb");
+        fread(&animations[2], sizeof(animations[2]), 1, testfile);
+        //animations[2].sprite_y_displacement = -30;
+        //animations[2].sprite_x_displacement = 0;
         animations[2].sprite_sheet = accelerate_surface(temp_surface, prog.renderer, SDL_MapRGB(temp_surface->format, 0, 0, 0));
         assert(animations[2].sprite_sheet !=  NULL);
-        animations[2].sprite_w = 80;
-        animations[2].sprite_h = 80;
-        animations[2].sprite_scale = 2;
+        //animations[2].sprite_w = 80;
+        //animations[2].sprite_h = 80;
+        //animations[2].sprite_scale = 2;
 
-        animations[2].transition_table[FALL][IDLE] = 0;
-        animations[2].transition_table[GET_ATTACKED][IDLE] = 1;
-        animations[2].default_seqs[IDLE] = 0;
+        //animations[2].transition_table[FALL][IDLE] = 0;
+        //animations[2].transition_table[GET_ATTACKED][IDLE] = 1;
+       /* animations[2].default_seqs[IDLE] = 0;
         animations[2].default_seqs[FALL] = 1;
         animations[2].default_seqs[WALK] = 2;
         animations[2].default_seqs[JUMP] = 3;
@@ -229,7 +231,8 @@ int main( int argc, char* args[] )
 
         animations[2].transition_table[ATTACK][4] = 8;//second attack sequence, chain attack after first attack connects
         animations[2].transition_table[ATTACK][3] = 10;//jump attack
-
+        */
+        /*
         //idle frames
         animations[2].frames[0][0].x = 0;animations[2].frames[0][0].y = 0;animations[2].frames[0][0].active = 1;
 
@@ -245,9 +248,11 @@ int main( int argc, char* args[] )
         animations[2].frames[7][1].x = 80*6;animations[2].frames[7][1].y = 0;animations[2].frames[7][1].active = 1;
         animations[2].frames[7][0].x = 80*7;animations[2].frames[7][0].y = 0;animations[2].frames[7][0].active = 1;
 
+
         //jump frames
         animations[2].frames[3][0].x = 80*1;animations[2].frames[3][0].y = 80*6;animations[2].frames[3][0].active = 1;
         animations[2].frames[3][1].x = 80*2;animations[2].frames[3][1].y = 80*6;animations[2].frames[3][1].active = 1;
+
 
         //fall frames
         animations[2].frames[1][0].x = 160;animations[2].frames[1][0].y = 320;animations[2].frames[1][0].active = 1;
@@ -263,6 +268,7 @@ int main( int argc, char* args[] )
         animations[2].frames[8][2].x = 80*2;animations[2].frames[8][2].y = 160;animations[2].frames[8][2].active = 1;
         animations[2].frames[8][3].x = 80*3;animations[2].frames[8][3].y = 160;animations[2].frames[8][3].active = 1;
         animations[2].frames[8][4].x = 80*4;animations[2].frames[8][4].y = 160;animations[2].frames[8][4].active = 1;
+
 
         //jump attack
         animations[2].frames[10][0].x = 80*3;animations[2].frames[10][0].y = 320;animations[2].frames[10][0].active = 1;
@@ -285,15 +291,16 @@ int main( int argc, char* args[] )
         animations[2].frames[6][1].x = 160;animations[2].frames[6][1].y = 80;animations[2].frames[6][1].active = 1;
         animations[2].frames[6][2].x = 160;animations[2].frames[6][2].y = 80;animations[2].frames[6][2].active = 1;
 
+*/
          //attacks
-        animations[2].attacks[0].damage = 2;
+        /*animations[2].attacks[0].damage = 2;
         animations[2].attacks[0].target_dx = 0.7;
         animations[2].attacks[0].x = 20;
         animations[2].attacks[0].y = 0;
         animations[2].attacks[0].width = 60;
         animations[2].attacks[0].height = 20;
-
-        animations[2].attacks[1].damage = 2;
+*/
+/*        animations[2].attacks[1].damage = 2;
         animations[2].attacks[1].target_dx = 3;
         animations[2].attacks[1].x = 20;
         animations[2].attacks[1].y = 0;
@@ -301,12 +308,13 @@ int main( int argc, char* args[] )
         animations[2].attacks[1].height = 20;
 
 
+
         animations[2].attacks[2].damage = 2;
         animations[2].attacks[2].target_dx = 3;
         animations[2].attacks[2].x = 20;
         animations[2].attacks[2].y = 0;
         animations[2].attacks[2].width = 80;
-        animations[2].attacks[2].height = 20;
+        animations[2].attacks[2].height = 20;*/
     }
 
     //frame rate capping
