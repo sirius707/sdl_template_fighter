@@ -31,6 +31,7 @@
 void s_game_player_logic(void);
 void s_game_player_fsm(CHARACTER *player);
 void s_game_get_input(void);
+void s_game_get_player_input(CHARACTER *player);
 void s_game_clear_action_keys();
 void s_game_process_attacks(CHARACTER *player);
 void s_game_shift_player_state(CHARACTER *player, PLAYER_STATE state);//change state and animation
@@ -40,6 +41,8 @@ void s_game_goto_cached_state(CHARACTER *player);
 void s_game_player_jump(CHARACTER *player);//go to jump state
 void s_game_player_attack(CHARACTER *player);// go to attack state
 void s_game_player_crouch(CHARACTER *player);
+
+void s_game_input_buffer_update(CHARACTER *player);
 
 ATK_INFO *s_game_get_current_attack(CHARACTER *player);
 

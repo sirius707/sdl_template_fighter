@@ -17,11 +17,18 @@ typedef struct PROGRAM{
 }PROGRAM;
 
 typedef struct INPUT{
+
     bool p1_movement[4];
-    bool p2_movement[4];
-    bool ai_movement[4];
     bool p1_action[4];
+    bool p1_input_buffer[INPUT_BUFFER_LENGTH];
+    uint8_t p1_buffer_index;
+
+    bool p2_movement[4];
     bool p2_action[4];
+    bool p2_input_buffer[INPUT_BUFFER_LENGTH];
+    uint8_t p2_buffer_index;
+
+    bool ai_movement[4];
     bool ai_action[4];
 
 
@@ -100,6 +107,7 @@ typedef struct CHARACTER{
    CONTROLLER control;//AI or p1 or p2
    bool *movement_control;//movement keys. updated by keyboard input or AI depending on control, ptr to array
    bool *action_control;//action keys. updated by keyboard input or AI depnding on control, ptr to array
+   int input_buffer[INPUT_BUFFER_LENGTH];
 
    int8_t hp;
 }CHARACTER;//todo:create 2 characters

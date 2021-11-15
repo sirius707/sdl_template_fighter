@@ -4,6 +4,7 @@
 void s_game_player_logic(void)
 {
     for(int i = 0; i < NUMBER_OF_PLAYERS; i++){
+        s_game_input_buffer_update(&entities[i]);
         s_game_get_input();
         s_animation_animate(&entities[i]);
         s_game_player_fsm(&entities[i]);
@@ -164,7 +165,7 @@ inline void s_game_process_attacks(CHARACTER *player)
             ptr_attack = s_game_get_current_attack(player);
 
             player->is_attacking = false;
-            //construct hit bookx
+            //construct hit box
             attack_x = player->x;
             attack_y = player->y + ptr_attack->y;
             attack_w = ptr_attack->width;
@@ -240,6 +241,37 @@ inline void s_game_get_input(void)
             input.p1_action[ACTION_C] = prog.keyboard[SDL_SCANCODE_Z];
             input.p1_action[ACTION_D] = prog.keyboard[SDL_SCANCODE_X];
 
+
+            input.p2_movement[UP] = prog.keyboard[SDL_SCANCODE_UP];
+            input.p2_movement[LEFT] = prog.keyboard[SDL_SCANCODE_LEFT];
+            input.p2_movement[RIGHT] = prog.keyboard[SDL_SCANCODE_RIGHT];
+            input.p2_movement[DOWN] = prog.keyboard[SDL_SCANCODE_DOWN];
+
+            input.p2_action[ACTION_A] = prog.keyboard[SDL_SCANCODE_9];
+            input.p2_action[ACTION_B] = prog.keyboard[SDL_SCANCODE_0];
+            input.p2_action[ACTION_C] = prog.keyboard[SDL_SCANCODE_O];
+            input.p2_action[ACTION_D] = prog.keyboard[SDL_SCANCODE_P];
+}
+
+inline void s_game_get_player_input(CHARACTER *player)
+{
+            input.p1_movement[UP] = prog.keyboard[SDL_SCANCODE_U];
+            input.p1_movement[LEFT] = prog.keyboard[SDL_SCANCODE_H];
+            input.p1_movement[RIGHT] = prog.keyboard[SDL_SCANCODE_K];
+            input.p1_movement[DOWN] = prog.keyboard[SDL_SCANCODE_J];
+
+            input.p1_action[ACTION_A] = prog.keyboard[SDL_SCANCODE_A];
+            input.p1_action[ACTION_B] = prog.keyboard[SDL_SCANCODE_S];
+            input.p1_action[ACTION_C] = prog.keyboard[SDL_SCANCODE_Z];
+            input.p1_action[ACTION_D] = prog.keyboard[SDL_SCANCODE_X];
+
+            //add keys to buffer
+            for(int i = 0; i < 4; i++){
+                if(input.p1_movement[i]){
+                    entities[0].input_buffer[0] = i;
+                    s_game_input_buffer_update(&entities[0]);
+                }
+            }
 
             input.p2_movement[UP] = prog.keyboard[SDL_SCANCODE_UP];
             input.p2_movement[LEFT] = prog.keyboard[SDL_SCANCODE_LEFT];
@@ -374,4 +406,12 @@ ATK_INFO *s_game_get_current_attack(CHARACTER *player)
     attack_index = ptr_animation->frames[sequence][frame].data - 1;
 
     return &(ptr_animation->attacks[attack_index]);
+}
+
+void s_game_input_buffer_update(CHARACTER *player)
+{
+    for(int i = INPUT_BUFFER_LENGTH -1; i > 0; i--){
+        player->input_buffer[i] = player->input_buffer[i-1];
+    }
+    player->input_buffer[0] = 0;
 }

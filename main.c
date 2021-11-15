@@ -218,6 +218,15 @@ int main( int argc, char* args[] )
         //animations[2].transition_table[FALL][IDLE] = 0;
         //animations[2].transition_table[GET_ATTACKED][IDLE] = 1;
        /* animations[2].default_seqs[IDLE] = 0;
+=======
+        animations[2].sprite_w = 80;
+        animations[2].sprite_h = 80;
+        animations[2].sprite_scale = 2;
+
+        animations[2].transition_table[FALL][IDLE] = 0;
+        animations[2].transition_table[GET_ATTACKED][IDLE] = 1;
+        animations[2].default_seqs[IDLE] = 0;
+>>>>>>> 1663af676566136a943612a5d1043c4272ebc73a
         animations[2].default_seqs[FALL] = 1;
         animations[2].default_seqs[WALK] = 2;
         animations[2].default_seqs[JUMP] = 3;
@@ -230,9 +239,13 @@ int main( int argc, char* args[] )
         animations[2].default_seqs[CROUCH] = 9;
 
         animations[2].transition_table[ATTACK][4] = 8;//second attack sequence, chain attack after first attack connects
+<<<<<<< HEAD
         animations[2].transition_table[ATTACK][3] = 10;//jump attack
         */
         /*
+=======
+
+>>>>>>> 1663af676566136a943612a5d1043c4272ebc73a
         //idle frames
         animations[2].frames[0][0].x = 0;animations[2].frames[0][0].y = 0;animations[2].frames[0][0].active = 1;
 
@@ -341,8 +354,12 @@ int main( int argc, char* args[] )
         if(prog.delta_time > 1.0/prog.fps)prog.delta_time = 1.0/prog.fps;
 
         s_cap_framerate(&then, &remaining_time, prog.fps);
-        printf("%d %d \r", entities[0].hp,  entities[1].hp);
+        //printf("%d %d \r", entities[0].hp,  entities[1].hp);
 
+        for(int i = 0; i < INPUT_BUFFER_LENGTH; i++){
+            printf("%d ", entities[0].input_buffer[i]);
+        }
+        printf("\r");
     }
 
 

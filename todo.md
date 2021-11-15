@@ -40,7 +40,10 @@ low parry
 data files
 stage
 buffered input
+character creation tool
 
 bugs: player keeps moving along x if you land while attacking: fixed
 	we seem to need to set can_attack in fall and jump whicn isn't called for since it should be set and unset only by attack: this doesn't seem to be a bug, or an issue at all
 	erratic frame rate
+	
+	don't caceh state when attacking, because in this case after an attack from a combo chain is finished the player might go back to previous attack (doesn't make sense)
