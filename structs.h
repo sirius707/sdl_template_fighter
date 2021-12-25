@@ -34,6 +34,25 @@ typedef struct INPUT{
 
 }INPUT;
 
+typedef union INPUT_FRAME{
+    struct{
+        // direction buttons
+        uint8_t up    :1;
+        uint8_t down  :1;
+        uint8_t left  :1;
+        uint8_t right :1;
+
+        //action buttons
+        uint8_t a     :1;
+        uint8_t b     :1;
+        uint8_t c     :1;
+        uint8_t d     :1;
+
+    }bits;
+    uint16_t value;
+}INPUT_FRAME;
+
+
 typedef struct{
     //hitbox
     float x, y;
@@ -107,7 +126,9 @@ typedef struct CHARACTER{
    CONTROLLER control;//AI or p1 or p2
    bool *movement_control;//movement keys. updated by keyboard input or AI depending on control, ptr to array
    bool *action_control;//action keys. updated by keyboard input or AI depnding on control, ptr to array
-   int input_buffer[INPUT_BUFFER_LENGTH];
+   SPECIAL_INPUT special_input;//stores special input so logic FSM can check it
+   INPUT_FRAME input_frame_buffer[INPUT_BUFFER_LENGTH];
+   uint8_t current_input_frame;
 
    int8_t hp;
 }CHARACTER;//todo:create 2 characters

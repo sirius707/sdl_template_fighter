@@ -892,3 +892,97 @@
 
 1616860564 source:e:\cprograms\sdl_template\struct.c
 
+1640446698 source:c:\projects\sdl_template\game.c
+	"game.h"
+	"animation.h"
+
+1640444308 c:\projects\sdl_template\game.h
+	"common.h"
+	"structs.h"
+
+1637533008 c:\projects\sdl_template\common.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<ctype.h>
+	<stdint.h>
+	<stdbool.h>
+	<assert.h>
+	"my_sdl_util.h"
+	"defs.h"
+
+1637533008 c:\projects\sdl_template\my_sdl_util.h
+	<SDL.h>
+	<stdbool.h>
+	"stdio.h"
+
+1640444375 c:\projects\sdl_template\defs.h
+
+1640444419 c:\projects\sdl_template\structs.h
+	"common.h"
+
+1637533008 c:\projects\sdl_template\animation.h
+	"common.h"
+	"structs.h"
+
+1637533008 source:c:\projects\sdl_template\init.c
+	"init.h"
+	"render.h"
+	"animation.h"
+
+1637533008 c:\projects\sdl_template\init.h
+	"common.h"
+	"structs.h"
+
+1637533008 c:\projects\sdl_template\render.h
+	"common.h"
+	"structs.h"
+
+1640451231 source:c:\projects\sdl_template\main.c
+	"common.h"
+	"structs.h"
+	"init.h"
+	"render.h"
+	"input.h"
+	"special_input.h"
+	"game.h"
+	"physics.h"
+
+1637533008 c:\projects\sdl_template\input.h
+	"common.h"
+	"structs.h"
+
+1637533008 c:\projects\sdl_template\physics.h
+	"common.h"
+	"structs.h"
+
+1637533008 source:c:\projects\sdl_template\my_sdl_util.c
+	"my_sdl_util.h"
+	<assert.h>
+
+1637533008 source:c:\projects\sdl_template\physics.c
+	"physics.h"
+
+1637533008 source:c:\projects\sdl_template\render.c
+	"render.h"
+	"game.h"
+
+1637533008 source:c:\projects\sdl_template\animation.c
+	"animation.h"
+
+1637533008 source:c:\projects\sdl_template\input.c
+	"input.h"
+
+1637533008 source:c:\projects\sdl_template\struct.c
+	"structs.h"
+
+1640449776 source:c:\projects\sdl_template\special_input.c
+	"common.h"
+	"structs.h"
+	"special_input.h"
+	<stdio.h>
+
+1640445260 c:\projects\sdl_template\special_input.h
+	"structs.h"
+
